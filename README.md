@@ -1,1 +1,1 @@
-"# Django Dernek ˜lan Duyuru Etkinlik Projesi" 
+"# Django Dernek ilan Duyuru Etkinlik Projesi" 
