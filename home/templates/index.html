@@ -1,12 +1,14 @@
 {% extends "homebase.html"%}
 
-{% block title %}Ballıkuyumcu Köyü Resmi Web Sitesi{% endblock %}
+{% block title %} {{setting.title}} {% endblock %}
 
-{% block keywords %}ballıkuyumcu koyu, ankara eskisehiryolu{% endblock %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
 
-{% block description %}Ballıkuyumcu Köyü Derneği{% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
 
-{% block author %}Çiğdem Atak{% endblock %}
+{% block author %} Çiğdem Atak {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' /> {% endblock %}
 
 {% include 'header.html'%}
 

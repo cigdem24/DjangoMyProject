@@ -9,18 +9,22 @@ class AnnouncementImageInline(admin.TabularInline):
     #galeri kas resimden olussun
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'status']
+    list_display = ['title', 'status', 'image_tag']
     list_filter = ['status']
+    readonly_fields = ('image_tag',)
+
 
 class AnnouncementAdmin(admin.ModelAdmin):
-    list_display = ['title', 'status']
+    list_display = ['title', 'image_tag', 'status']
     list_filter = ['status']
     inlines = [AnnouncementImageInline]
     #image tablosunda 5 tane resim eklenecek alan olustur.
+    readonly_fields = ('image_tag',)
 
 class ImagesAdmin(admin.ModelAdmin):
-    list_display = ['title', 'image']
+    list_display = ['title', 'image_tag']
     list_filter = ['image']
+    readonly_fields = ('image_tag',)
 
 
 
