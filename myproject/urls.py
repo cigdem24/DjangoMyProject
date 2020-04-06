@@ -18,11 +18,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from home import views
 
 urlpatterns = [
     path('', include('home.urls')),
     path('announcement/', include('announcement.urls')),
     path('home/', include('home.urls')),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
     path('admin/', admin.site.urls),
     path('^ckeditor/', include('ckeditor_uploader.urls')),
 ]

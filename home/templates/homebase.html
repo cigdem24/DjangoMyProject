@@ -3,41 +3,30 @@
 {% load static %}
 <head>
     <title> {% block title %} Home {% endblock %} </title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="{% block keywords %}  {% endblock %}">
     <meta name="description" content="{% block description %}  {% endblock %}">
-	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
 
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="../static/common-css/bootstrap.css" rel="stylesheet">
+    <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static 'common-css/layerslider.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/responsive.css' %}" rel="stylesheet">
 
-	<!-- Font -->
-
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-
-
-	<!-- Stylesheets -->
-
-	<link href="{% static 'common-css/bootstrap.css'%}" rel="stylesheet">
-
-	<link href="{% static 'common-css/ionicons.css'%}" rel="stylesheet">
-
-	<link href="{% static 'common-css/layerslider.css'%}" rel="stylesheet">
-
-
-	<link href="{% static '01-homepage/css/styles.css'%}" rel="stylesheet">
-
-	<link href="{% static '01-homepage/css/responsive.css'%}" rel="stylesheet">
-     {% block head %} {% endblock %}
+    {% block head %}                                          {% endblock %}
 </head>
 
 <body>
-     {% include "header.html" %}
-
-     {% block slider %} {% include 'slider.html' %} {% endblock %}
-
-     {% block content %} {% include 'content.html' %} {% endblock %}
-
-     {% block footer %} {% include 'footer.html' %} {% endblock %}
-
+{% include 'header.html' %}
+{% block body %}
+    {% include 'slider.html' %}
+    {% include 'content.html' %}
+{% endblock %}
+{% include 'footer.html' %}
 </body>
 </html>

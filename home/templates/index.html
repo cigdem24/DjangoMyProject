@@ -1,21 +1,12 @@
 {% extends "homebase.html"%}
 
-{% block title %} {{setting.title}} {% endblock %}
-
-{% block keywords %} {{ setting.keywords }} {% endblock %}
-
-{% block description %} {{ setting.description }} {% endblock %}
-
-{% block author %} Çiğdem Atak {% endblock %}
-
+{% block title %}       {{ setting.title }}            {% endblock %}
+{% block keywords %}    {{ setting.keywords }}       {% endblock %}
+{% block description %} {{ setting.description }}    {% endblock %}
 {% block head %} <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' /> {% endblock %}
 
 {% include 'header.html'%}
-
-{% block slider %} {% include 'slider.html'%} {% endblock %}
-
-{% block content %} {% include 'content.html'%} {% endblock %}
-
+{% block slider %}    {% include 'slider.html'%}     {% endblock %}
+{% block content %}   {% include 'content.html'%}    {% endblock %}
 {% include 'footer.html'%}
 
-{% block foot %} {% endblock %}
