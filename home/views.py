@@ -1,7 +1,9 @@
-from django.http import HttpResponse
+from django import forms
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from home.models import Setting
+from home.models import Setting, ContactFormu, ContactFormMessage
 
 
 def index(request):
@@ -17,6 +19,19 @@ def about(request):
 
 
 def contact(request):
+    if request.method == 'POST':  # form post edildiyse
+        form = ContactFormu(request.POST)
+        if form.is_valid():
+            data = ContactFormMessage()  # model ile bağlantı kur
+            data.name = form.cleaned_data['name']
+            data.email = form.cleaned_data['email']
+            data.subject = form.cleaned_data['subject']
+            data.message = form.cleaned_data['message']
+            data.save()
+            messages.success(request, "Mesajınız gönderilmiştir.Teşekkür ederiz")
+            return HttpResponseRedirect('/contact')
+
     setting = Setting.objects.get(pk=2)
-    context = {'setting': setting}
+    form = ContactFormu()
+    context = {'setting': setting, 'form': form}
     return render(request, 'contact.html', context)

@@ -16,92 +16,66 @@
 {% endblock %}
 
 {% block body %}
- <section class="blog-area">
-     <div class="container">
-         <div class="row">
-             <div class="col-lg-8 col-md-12">
-					<div class="blog-posts">
+<section class="blog-area">
+    <div class="container">
+        <div class="row">
+            <div class=" col-lg-6 col-md-12">
+                 <div class="blog-posts">
+                     <div class="leave-comment-area">
+							<h3 class="title"><b class="light-color">İLETİŞİM FORMU</b></h3>
+                             <div class="leave-comment">
+
+                             {% if messages %}
+                                 {% for message in messages %}
+                                       <div class="alert alert-{{ message.tags }}" role="alert">
+                                              {{ message }}
+                                       </div>
+                                 {% endfor %}
+                             {% endif %}
+
+
+
+								    <form action="" method="post" id="contactForm" name="contactForm" class="contactForm">
+                                        {% csrf_token %}
+
+									     <div class="row">
+                                             <div class="col-sm-6">
+                                                 <input class="name-input" type="text" placeholder="Name" name="name">
+                                             </div>
+                                             <div class="col-sm-6">
+                                                 <input class="email-input" type="text" placeholder="Email" name="email">
+                                             </div>
+                                             <div class="col-sm-12">
+                                                 <input class="subject-input" type="text" placeholder="Subject" name="subject">
+                                             </div>
+                                             <div class="col-sm-12">
+                                                 <textarea class="message-input" rows="6" placeholder="Message" name="message"></textarea>
+                                             </div>
+                                             <div class="col-sm-12">
+                                                 <button class="btn btn-2"><b>GÖNDER</b></button>
+                                             </div>
+
+                                         </div>
+                                    </form>
+                             </div><!-- comments-area -->
+                     </div>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5 col-md-12">
+
                         <div class="single-post">
-							<div class="image-wrapper">
-                                <img src="{% static 'images/blog-8-1000x600.jpg'%}" alt="Blog Image">
-                            </div>
-                            <p class="desc">{{ setting.contact|safe }}</p>
+							<h3 class="title"><b class="light-color">DERNEK İLETİŞİM BİLGİLERİMİZ</b></h3>
+							<p class="desc">
+                                {{ setting.contact|safe }}
+                            </p>
+                        </div>
+            </div>
 
-						</div><!-- single-post -->
+        </div>
+    </div>
+</section>
 
-						<div class="leave-comment-area">
-							<div class="leave-comment">
-
-								<form method="post">
-									<div class="row">
-										<div class="col-sm-6">
-											<input class="name-input" type="text" placeholder="Name">
-										</div>
-										<div class="col-sm-6">
-											<input class="email-input" type="text" placeholder="Email">
-										</div>
-										<div class="col-sm-12">
-											<input class="subject-input" type="text" placeholder="Subject">
-										</div>
-										<div class="col-sm-12">
-											<textarea class="message-input" rows="6" placeholder="Message"></textarea>
-										</div>
-										<div class="col-sm-12">
-											<button class="btn btn-2"><b>COMMENT</b></button>
-										</div>
-                                    </div><!-- row -->
-								</form>
-
-                            </div><!-- leave-comment -->
-
-                        </div><!-- comments-area -->
-
-					  </div><!-- blog-posts -->
-
-				</div><!-- col-lg-4 -->
-                <div class="col-lg-4 col-md-12">
-					<div class="sidebar-area">
-                        <div class="sidebar-section about-author center-text">
-							<div class="author-image"><img src="images/author-1-200x200.jpg" alt="Autohr Image"></div>
-
-							<ul class="social-icons">
-								<li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-								<li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
-								<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-								<li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
-								<li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
-							</ul><!-- right-area -->
-
-							<h4 class="author-name"><b class="light-color">Cristine Smith</b></h4>
-							<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-								dolore magnam aliquam quaerat voluptatem.</p>
-
-							<div class="signature-image"><img src="images/signature-image.png" alt="Signature Image"></div>
-							<a class="read-more-link" href="#"><b>READ MORE</b></a>
-
-						</div><!-- sidebar-section about-author -->
-
-						<div class="sidebar-section newsletter-area">
-							<h5 class="title"><b>Subscribe to our newsletter</b></h5>
-							<form action="post">
-								<input class="email-input" type="text" placeholder="Your email here">
-								<button class="btn btn-2" type="submit">SUBSCRIBE</button>
-							</form>
-						</div><!-- sidebar-section newsletter-area -->
-
-						<div class="sidebar-section advertisement-area">
-							<h4 class="title"><b class="light-color">Advertisement</b></h4>
-							<a class="advertisement-img" href="#">
-								<img src="images/advertise-1-400x500.jpg" alt="Advertisement Image">
-								<h6 class="btn btn-2 discover-btn">DISCOVER</h6>
-							</a>
-						</div><!-- sidebar-section advertisement-area -->
-
-					</div><!-- sidebar-area -->
-				</div><!-- col-lg-4 -->
-          </div><!-- row -->
-		</div><!-- container -->b
-	</section><!-- section -->
 {% endblock %}
 
 	<script src="{% static 'common-js/jquery-3.1.1.min.js'%}"></script>
