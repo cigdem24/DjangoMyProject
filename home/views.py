@@ -3,12 +3,16 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
+from announcement.models import Announcement
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
 def index(request):
     setting = Setting.objects.get(pk=2)
-    context = {'setting': setting, 'page': 'home'}
+    sliderdata = Announcement.objects.all()[:5]
+    context = {'setting': setting,
+               'page': 'home',
+               'sliderdata': sliderdata}
     return render(request, 'index.html', context)
 
 

@@ -1,32 +1,35 @@
 {% load static %}
 <div class="main-slider">
     <div id="slider">
-
-        <div class="ls-slide"
-             data-ls="bgsize:cover; bgposition:30% 70%; duration:4000; transition2d:104; kenburnsscale:1.00;">
-            <img src="{% static 'images/köy1.JPG' %}" class="ls-bg" alt=""/>
-
-            <div class="slider-content ls-l" style="top:20%; left:80%;"
-                 data-ls="offsetyin:100%; offsetxout:-50%; durationin:500; delayin:100; durationout:400; parallaxlevel:0;">
-                <h2>Ballıkuyumcu </h2>
-                <h3>Köyüne Hoşgeldiniz</h3>
-
-            </div>
-
-        </div><!-- ls-slide -->
-
-        <div class="ls-slide"
-             data-ls="bgsize:cover; bgposition:30% 70%; duration:4000; transition2d:104; kenburnsscale:1.00;">
+     <div class="ls-slide"
+             data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
             <img src="{% static 'images/koy23.JPG' %}" class="ls-bg" alt=""/>
             <div class="slider-content ls-l" style="top:20%; left:80%;"
                  data-ls="offsetyin:100%; offsetxout:-50%; durationin:500; delayin:100; durationout:400; parallaxlevel:0;">
-                <h2>Ballıkuyumcu </h2>
-                <h3>Köyüne Hoşgeldiniz</h3>
+                <h3>Ballıkuyumcu </h3>
+                <h4>Köyüne Hoşgeldiniz</h4>
 
             </div>
 
 
+     </div><!-- ls-slide -->
+
+        {% for rs in sliderdata %}
+            <div class="ls-slide"
+             data-ls="bgsize:cover; bgposition:50% 50%; duration:4000; transition2d:104; kenburnsscale:1.00;">
+            <img src="{{ rs.image.url }}" class="ls-bg" alt=""/>
+
+            <div class="slider-content ls-l" style="top:20%; left:80%;"
+                 data-ls="offsetyin:100%; offsetxout:-50%; durationin:500; delayin:100; durationout:400; parallaxlevel:0;">
+                <h2>{{ rs.title }}</h2>
+                <a href="/announcement/{{ rs.id }}/{{ rs.slug }}" class="btn-primary">Sayfaya Gitmek İçin Tıklayın</a>
+
+
+            </div>
+
         </div><!-- ls-slide -->
+        {% endfor %}
+
 
     </div><!-- slider -->
 </div><!-- main-slider -->
