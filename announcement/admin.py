@@ -1,6 +1,8 @@
 from django.contrib import admin
-
+from mptt.admin import DraggableMPTTAdmin
 # Register your models here.
+
+
 from announcement.models import Category, Announcement, Images
 
 
@@ -30,6 +32,42 @@ class ImagesAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
 
 
-admin.site.register(Category, CategoryAdmin)
+class CategoryAdmin2(DraggableMPTTAdmin):
+    mptt_indent_field = "title"
+    list_display = ('tree_actions', 'indented_title',
+                    'related_announcements_count', 'related_announcements_cumulative_count')
+    list_display_links = ('indented_title',)
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+
+        # Add cumulative product count
+        qs = Category.objects.add_related_count(
+            qs,
+            Announcement,
+            'category',
+            'announcements_cumulative_count',
+            cumulative=True)
+
+        # Add non cumulative product count
+        qs = Category.objects.add_related_count(qs,
+                                                Announcement,
+                                                'category',
+                                                'announcements_count',
+                                                cumulative=True)
+        return qs
+
+    def related_announcements_count(self, instance):
+        return instance.announcements_count
+
+    related_announcements_count.short_description = 'Related products (for this specific category)'
+
+    def related_announcements_cumulative_count(self, instance):
+        return instance.announcements_cumulative_count
+
+    related_announcements_cumulative_count.short_description = 'Related products (in tree)'
+
+
+admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(Images, ImagesAdmin)

@@ -1,18 +1,20 @@
-from django import forms
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from announcement.models import Announcement
+from announcement.models import Announcement, Category
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
 def index(request):
     setting = Setting.objects.get(pk=2)
-    sliderdata = Announcement.objects.all()[:5]
+    sliderdata = Announcement.objects.all()[:15]
+    category = Category.objects.all()
+
     context = {'setting': setting,
                'page': 'home',
-               'sliderdata': sliderdata}
+               'sliderdata': sliderdata,
+               'category': category}
     return render(request, 'index.html', context)
 
 
@@ -39,3 +41,7 @@ def contact(request):
     form = ContactFormu()
     context = {'setting': setting, 'form': form}
     return render(request, 'contact.html', context)
+
+
+#def show_category(request):
+    #return render(request, "header.html", {'category': Category.objects.all()})

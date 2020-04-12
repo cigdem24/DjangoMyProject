@@ -1,87 +1,89 @@
-{% extends "homebase.html"%}
+{% extends "homebase.html" %}
 {% load static %}
 {% block title %}          İLETİŞİM SAYFASI              {% endblock %}
 
 {% block head %}
 
-    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
-<!-- Font -->
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <!-- Stylesheets -->
-    <link href="{% static 'common-css/bootstrap.css'%}" rel="stylesheet">
-    <link href="{% static 'common-css/ionicons.css'%}" rel="stylesheet">
-    <link href="{% static '04-Contact/css/styles.css'%}" rel="stylesheet">
-    <link href="{% static '04-Contact/css/responsive.css'%}" rel="stylesheet">
+    <link href="{% static 'common-css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static '04-Contact/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '04-Contact/css/responsive.css' %}" rel="stylesheet">
 
 {% endblock %}
 
 {% block body %}
-<section class="blog-area">
-    <div class="container">
-        <div class="row">
-            <div class=" col-lg-6 col-md-12">
-                 <div class="blog-posts">
-                     <div class="leave-comment-area">
-							<h3 class="title"><b class="light-color">İLETİŞİM FORMU</b></h3>
-                             <div class="leave-comment">
+    <section class="blog-area">
+        <div class="container">
+            <div class="row">
+                <div class=" col-lg-6 col-md-12">
+                    <div class="blog-posts">
+                        <div class="leave-comment-area">
+                            <h3 class="title"><b class="light-color">İLETİŞİM FORMU</b></h3>
+                            <div class="leave-comment">
 
-                             {% if messages %}
-                                 {% for message in messages %}
-                                       <div class="alert alert-{{ message.tags }}" role="alert">
-                                              {{ message }}
-                                       </div>
-                                 {% endfor %}
-                             {% endif %}
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
 
 
 
-								    <form action="" method="post" id="contactForm" name="contactForm" class="contactForm">
-                                        {% csrf_token %}
+                                <form action="" method="post" id="contactForm" name="contactForm" class="contactForm">
+                                    {% csrf_token %}
 
-									     <div class="row">
-                                             <div class="col-sm-6">
-                                                 <input class="name-input" type="text" placeholder="Name" name="name">
-                                             </div>
-                                             <div class="col-sm-6">
-                                                 <input class="email-input" type="text" placeholder="Email" name="email">
-                                             </div>
-                                             <div class="col-sm-12">
-                                                 <input class="subject-input" type="text" placeholder="Subject" name="subject">
-                                             </div>
-                                             <div class="col-sm-12">
-                                                 <textarea class="message-input" rows="6" placeholder="Message" name="message"></textarea>
-                                             </div>
-                                             <div class="col-sm-12">
-                                                 <button class="btn btn-2"><b>GÖNDER</b></button>
-                                             </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input class="name-input" type="text" placeholder="Name" name="name">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input class="email-input" type="text" placeholder="Email" name="email">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input class="subject-input" type="text" placeholder="Subject"
+                                                   name="subject">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <textarea class="message-input" rows="6" placeholder="Message"
+                                                      name="message"></textarea>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-2"><b>GÖNDER</b></button>
+                                        </div>
 
-                                         </div>
-                                    </form>
-                             </div><!-- comments-area -->
-                     </div>
-                </div>
-            </div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5 col-md-12">
-
-                        <div class="single-post">
-							<h3 class="title"><b class="light-color">DERNEK İLETİŞİM BİLGİLERİMİZ</b></h3>
-							<p class="desc">
-                                {{ setting.contact|safe }}
-                            </p>
+                                    </div>
+                                </form>
+                            </div><!-- comments-area -->
                         </div>
-            </div>
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 col-md-12">
 
+                    <div class="single-post">
+                        <h3 class="title"><b class="light-color">DERNEK İLETİŞİM BİLGİLERİMİZ</b></h3>
+                        <p class="desc">
+                            {{ setting.contact|safe }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 {% endblock %}
 
-	<script src="{% static 'common-js/jquery-3.1.1.min.js'%}"></script>
+<script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>
 
-	<script src="{% static 'common-js/tether.min.js'%}"></script>
+<script src="{% static 'common-js/tether.min.js' %}"></script>
 
-	<script src="{% static 'common-js/bootstrap.js'%}"></script>
+<script src="{% static 'common-js/bootstrap.js' %}"></script>
 
-	<script src="{% static 'common-js/scripts.js'%}"></script>
+<script src="{% static 'common-js/scripts.js' %}"></script>

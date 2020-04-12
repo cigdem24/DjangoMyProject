@@ -30,7 +30,7 @@
 
     </div><!-- top-menu -->
 
-    <div class="middle-menu center-text"><a href="#" class="logo"><img src="{% static 'images/header_1.png' %}"
+    <div class="middle-menu center-text"><a href="#" class="logo"><img src="{% static 'images/baslık.png' %}"
                                                                        alt="Logo Image"></a></div>
 
     <div class="bottom-area">
@@ -40,7 +40,22 @@
         <ul class="main-menu visible-on-click" id="main-menu">
             <li class="drop-down"><a href="#!">ANASAYFA</a>
             <li><a href="/about">HAKKIMIZDA</a></li>
-            <li><a href="/">KATEGORİ</a></li>
+            <li class="drop-down"><a href="#!">DUYURULAR<i class="ion-ios-arrow-down"></i></a>
+                {% load mptt_tags %}
+                <ul class="drop-down-menu ">
+                    {% recursetree category %}
+                        <li class="drop-down"><a href="/"> {{ node.title }}<i class="ion-ios-arrow-right"></i></a>
+                            {% if not node.is_leaf_node %}
+                                <ul class="drop-down-menu drop-down-inner children">
+                                    <!-- <li><a href="/category/{{ node.slug }}">{{ children }}</a></li> -->
+                                {{ children }}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endrecursetree %}
+                </ul>
+            </li>
+
             <li><a href="/contact">İLETİŞİM</a></li>
         </ul><!-- main-menu -->
 

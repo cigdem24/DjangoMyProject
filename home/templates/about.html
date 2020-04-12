@@ -1,51 +1,51 @@
-{% extends "homebase.html"%}
+{% extends "homebase.html" %}
 {% load static %}
 
 {% block title %}             HAKKIMIZDA           {% endblock %}
 {% block head %}
 
-    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}' />
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <!-- Stylesheets -->
-    <link href="{% static 'common-css/bootstrap.css'%}" rel="stylesheet">
-    <link href="{% static 'common-css/ionicons.css'%}" rel="stylesheet">
-    <link href="{% static '03-About-me/css/styles.css'%}" rel="stylesheet">
-    <link href="{% static '03-About-me/css/responsive.css'%}" rel="stylesheet">
+    <link href="{% static 'common-css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static '03-About-me/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '03-About-me/css/responsive.css' %}" rel="stylesheet">
 
 {% endblock %}
 
 {% block body %}
-   <section class="blog-area">
-		<div class="container">
-			<div class="row">
+    <section class="blog-area">
+        <div class="container">
+            <div class="row">
 
-				<div class="col-lg-8 col-md-12">
-					<div class="blog-posts">
+                <div class="col-lg-8 col-md-12">
+                    <div class="blog-posts">
                         <div class="single-post">
-							<div class="image-wrapper">
-                                <img src="{% static 'images/blog-2-1000x600.jpg'%}" alt="Blog Image">
+                            <div class="image-wrapper">
+                                <img src="{% static 'images/blog-2-1000x600.jpg' %}" alt="Blog Image">
                             </div>
-							<p class="date"><em>Monday, October 13, 2017</em></p>
-							<p class="desc">{{ setting.aboutus|safe }}</p>
+                            <p class="date"><em>Monday, October 13, 2017</em></p>
+                            <p class="desc">{{ setting.aboutus|safe }}</p>
 
                         </div><!-- single-post -->
                     </div><!-- blog-posts -->
-				</div><!-- col-lg-4 -->
-			</div><!-- row -->
-		</div><!-- container -->
-   </section><!-- section -->
+                </div><!-- col-lg-4 -->
+            </div><!-- row -->
+        </div><!-- container -->
+    </section><!-- section -->
 {% endblock %}
 
-	<script src="{% static 'common-js/jquery-3.1.1.min.js'%}"></script>
+<script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>
 
-	<script src="{% static 'common-js/tether.min.js'%}"></script>
+<script src="{% static 'common-js/tether.min.js' %}"></script>
 
-	<script src="{% static 'common-js/bootstrap.js'%}"></script>
+<script src="{% static 'common-js/bootstrap.js' %}"></script>
 
-	<script src="{% static 'common-js/grasp_mobile_progress_circle-1.0.0.js'%}"></script>
+<script src="{% static 'common-js/grasp_mobile_progress_circle-1.0.0.js' %}"></script>
 
-	<script src="{% static 'common-js/embed.videos.min.js'%}"></script>
+<script src="{% static 'common-js/embed.videos.min.js' %}"></script>
 
-	<script src="{% static 'common-js/jquery.circliful.min.js'%}"></script>
+<script src="{% static 'common-js/jquery.circliful.min.js' %}"></script>
 
-	<script src="{% static 'common-js/scripts.js'%}"></script>
+<script src="{% static 'common-js/scripts.js' %}"></script>
