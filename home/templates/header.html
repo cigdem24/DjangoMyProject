@@ -44,11 +44,11 @@
                 {% load mptt_tags %}
                 <ul class="drop-down-menu ">
                     {% recursetree category %}
-                        <li class="drop-down"><a href="/"> {{ node.title }}<i class="ion-ios-arrow-right"></i></a>
+                        <li class="drop-down"><a href="/category/{{ node.id }}/{{ node.slug }}"> {{ node.title }}<i class="ion-ios-arrow-right"></i></a>
                             {% if not node.is_leaf_node %}
                                 <ul class="drop-down-menu drop-down-inner children">
-                                    <!-- <li><a href="/category/{{ node.slug }}">{{ children }}</a></li> -->
-                                {{ children }}
+                                     <li><a href="/category/{{ node.id }}/{{ node.slug }}">{{ children }}</a></li>
+
                                 </ul>
                             {% endif %}
                         </li>
@@ -57,6 +57,7 @@
             </li>
 
             <li><a href="/contact">İLETİŞİM</a></li>
+            <li><a href="/sponsor">SPONSORLAR</a></li>
         </ul><!-- main-menu -->
 
     </div><!-- conatiner -->

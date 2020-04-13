@@ -1,7 +1,7 @@
 {% extends "homebase.html" %}
 {% load static %}
 
-{% block title %}             HAKKIMIZDA           {% endblock %}
+{% block title %}             SPONSORLARIMIZ           {% endblock %}
 {% block head %}
 
     <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
@@ -12,36 +12,19 @@
     <link href="{% static '03-About-me/css/styles.css' %}" rel="stylesheet">
     <link href="{% static '03-About-me/css/responsive.css' %}" rel="stylesheet">
 
+
 {% endblock %}
 
 {% block body %}
-    <div id="breadcrumb">
-       <div class="container">
-           <ul class="breadcrumb">
-               <li><a href="/">ANASAYFA</a></li>
-               <li>HAKKIMIZDA</li>
-           </ul>
-       </div>
-    </div>
     <section class="blog-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2 col-md-12"></div>
-                <div class="col-lg-8 col-md-12">
-                    <div class="blog-posts">
-                        <div class="single-post">
-                            <div class="image-wrapper">
-                                <img src="{% static 'images/about.jpg' %}" alt="Blog Image">
-                            </div>
-                            <p class="date"><em>Monday, October 13, 2017</em></p>
-                            <p class="desc">{{ setting.aboutus|safe }}</p>
-
-                        </div><!-- single-post -->
-                    </div><!-- blog-posts -->
-                </div><!-- col-lg-4 -->
-            </div><!-- row -->
-        </div><!-- container -->
-    </section><!-- section -->
+       <div class="container">
+           <div class="row">
+                <div class="col-lg-12 col-md-12 footer-instagram-area">
+                    {{ setting.references|safe }}
+                </div>
+           </div>
+       </div>
+    </section>
 {% endblock %}
 
 <script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>

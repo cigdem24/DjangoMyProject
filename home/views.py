@@ -20,7 +20,8 @@ def index(request):
 
 def about(request):
     setting = Setting.objects.get(pk=2)
-    context = {'setting': setting}
+    from unicodedata import category
+    context = {'setting': setting, 'category': category}
     return render(request, 'about.html', context)
 
 
@@ -39,9 +40,26 @@ def contact(request):
 
     setting = Setting.objects.get(pk=2)
     form = ContactFormu()
-    context = {'setting': setting, 'form': form}
+    from unicodedata import category
+    context = {'setting': setting, 'form': form, 'category': category}
     return render(request, 'contact.html', context)
 
+    # def show_category(request):
+    # return render(request, "header.html", {'category': Category.objects.all()})
 
-#def show_category(request):
-    #return render(request, "header.html", {'category': Category.objects.all()})
+
+def sponsor(request):
+    setting = Setting.objects.get(pk=2)
+    from unicodedata import category
+    context = {'setting': setting, 'category': category}
+    return render(request, 'sponsor.html', context)
+
+
+def category_announcements(request, id, slug):
+    category = Category.objects.all()
+    categorydata = Category.objects.get(pk=id)
+    announcements = Announcement.objects.filter(category_id=id)
+    context = {'announcements': announcements,
+               'category': category,
+               'categorydata': categorydata}
+    return render(request, 'announcements.html', context)
