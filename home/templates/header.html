@@ -47,8 +47,7 @@
                         <li class="drop-down"><a href="/category/{{ node.id }}/{{ node.slug }}"> {{ node.title }}<i class="ion-ios-arrow-right"></i></a>
                             {% if not node.is_leaf_node %}
                                 <ul class="drop-down-menu drop-down-inner children">
-                                     <li><a href="/category/{{ node.id }}/{{ node.slug }}">{{ children }}</a></li>
-
+                                    <li><a href="/category/{{ node.id }}/{{ node.slug }}">{{ children }}</a></li>
                                 </ul>
                             {% endif %}
                         </li>

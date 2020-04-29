@@ -10,11 +10,13 @@ def index(request):
     setting = Setting.objects.get(pk=2)
     sliderdata = Announcement.objects.all()[:15]
     category = Category.objects.all()
+    homepageAnnouncement = Announcement.objects.all().order_by('?')[:6]
 
     context = {'setting': setting,
                'page': 'home',
                'sliderdata': sliderdata,
-               'category': category}
+               'category': category,
+               'homepageAnnouncement': homepageAnnouncement}
     return render(request, 'index.html', context)
 
 
