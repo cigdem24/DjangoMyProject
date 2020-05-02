@@ -79,3 +79,18 @@ def announcement_detail(request, id, slug):
                'images': images,
                'comments': comments}
     return render(request, 'announcement_detail.html', context)
+
+
+def announcement_search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            category = Category.objects.all()
+            query = form.cleaned_data['query']
+            announcements = Announcement.objects.filter(title_icontains=query)
+            context = {'announcements': announcements,
+                       'category': category}
+            return render(request, 'announcement_search.html', context)
+
+    return HttpResponseRedirect('/')
+

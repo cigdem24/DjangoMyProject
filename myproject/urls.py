@@ -27,11 +27,11 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('sponsor/', views.sponsor, name='sponsor'),
-    #path('announcements/', views.announcements, name='announcements'),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('category/<int:id>/<slug:slug>/', views.category_announcements, name='category_announcements'),
     path('announcement/<int:id>/<slug:slug>/', views.announcement_detail, name='announcement_detail'),
+    path('search/', views.announcement_search, name='announcement_search'),
 ]
 
 if settings.DEBUG:
