@@ -16,11 +16,18 @@
 {% endblock %}
 
 {% block body %}
-    <section class="blog-area">
-        <div class="container">
+    <section class="blog-area" style="padding: 269px; bottom: 100px;">
+        <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
+
+            <ul class="breadcrumb">
+                <li><a href="/home"><b>Anasayfa > </b></a></li>
+                <li><a href="/sponsor"><b>Sponsorlar </b></a></li>
+            </ul>
+        </div>
+        <div class="container " >
             <div class="row">
-                <div class="col-lg-3 col-md-12 footer-instagram-area"></div>
-                <div class="col-lg-9 col-md-12 footer-instagram-area">
+                <div class="col-lg-2 col-md-12 footer-instagram-area"></div>
+                <div class="col-lg-10 col-md-12 footer-instagram-area">
                     {{ setting.references|safe }}
                 </div>
             </div>

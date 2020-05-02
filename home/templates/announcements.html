@@ -10,55 +10,74 @@
     <!-- Stylesheets -->
     <link href="{% static 'common-css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
-    <link href="{% static '04-Contact/css/styles.css' %}" rel="stylesheet">
-    <link href="{% static '04-Contact/css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/responsive.css' %}" rel="stylesheet">
+
 
 
 {% endblock %}
 
 {% block body %}
-     <div id="breadcrumb">
-       <div class="container">
-           <ul class="breadcrumb">
-               <li><a href="/">ANASAYFA</a></li>
-               <li> {{ categorydata.title }} </li>
-           </ul>
-       </div>
-    </div>
-    <section class="blog-area">
+
+    <section class="blog-area" style="padding: 269px;">
+
+        <!-- BREADCRUMB -->
+        <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
+            <ul class="breadcrumb">
+                <li><a href="/home"><b>Anasayfa >  </b></a></li>
+                <li><a href="/announcement"><b>Duyurular > </b></a></li>
+                <li><a href="#!"><b>{{ categorydata }} </b></a></li>
+            </ul>
+        </div>
+
+        <!-- DUYURULAR -->
         <div class="container">
             <div class="row">
-                {% for rs in announcements %}
-                <div class="col-md-4 col-sm-6 col-xl-6">
-                    <div class="single-post">
-                        <div class="image-wrapper"><img src="{{ rs.image.url }}" alt="Blog Image"></div>
 
-                        <div class="icons">
-                            <ul class="right-area social-icons">
-                                <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
-                                <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
-                                <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
-                            </ul>
-                        </div>
-                        <h6 class="date"><em>{{ rs.create_at }}</em></h6>
-                        <h3 class="title">
-                            <a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b class="light-color">{{ rs.title }}</b></a>
-                        </h3>
-                        <!-- <p>{{ rs.detail|safe }}</p> -->
-                        <a class="btn read-more-btn" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
-                    </div><!-- single-post -->
-                </div><!-- col-sm-6 -->
+                {% for rs in announcements %}
+                    <div class="col-lg-6 col-md-12" >
+                        <div class="single-post">
+
+                                <div class="image-wrapper" style="height: 250px; width: 450px; margin-bottom: 10px; ">
+                                    <img src="{{ rs.image.url }}" alt="Blog Image">
+                                </div>
+
+
+                            <div class="icons" >
+                                <ul class="right-area social-icons">
+                                    <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+                                    <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
+                                    <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
+                                </ul>
+                            </div>
+
+                            <h6 class="date"><em>{{ rs.create_at }}</em></h6>
+
+                            <h3 class="title" >
+                                <a  href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b class="light-color">{{ rs.title }}</b></a>
+                            </h3>
+
+                            <p>{{ rs.detail|safe }}</p>
+                            <a class="btn read-more-btn" style="margin-bottom: 75px;" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
+
+
+                        </div><!-- single-post -->
+                    </div><!-- col-sm-6 -->
                 {% endfor %}
+
             </div><!-- row -->
         </div><!-- container -->
     </section><!-- section -->
-{% endblock %}
 
+
+{% endblock %}
 
 <script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>
 
 <script src="{% static 'common-js/tether.min.js' %}"></script>
 
 <script src="{% static 'common-js/bootstrap.js' %}"></script>
+
+<script src="{% static 'common-js/layerslider.js' %}"></script>
 
 <script src="{% static 'common-js/scripts.js' %}"></script>

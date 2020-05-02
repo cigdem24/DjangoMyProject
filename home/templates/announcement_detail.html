@@ -1,0 +1,205 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block title %}           {% endblock %}
+{% block head %}
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="{% static 'common-css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static '02-Single-post/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '02-Single-post/css/responsive.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+    <section class="blog-area" style="padding: 269px">
+        <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
+
+            <ul class="breadcrumb" >
+                <li><a href="/home"><b>Anasayfa >  </b></a></li>
+                <li><a href="/announcement"><b>Duyurular >  </b></a></li>
+                <li><a href="/category/{{ announcements.category_id }}/{{ announcements.category.slug }}"><b>{{ announcements.category }} > </b></a></li>
+                <li><a href="/announcement/{{ announcements.category_id }}/{{ announcements.slug }}"><b>{{ announcements.title }}</b></a></li>
+
+            </ul>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8 col-md-12">
+                    <div class="blog-posts">
+
+                        <div class="single-post">
+
+                            <div class="image-wrapper">
+                                <img src="{{ announcements.image.url }}" alt="Blog Image">
+                            </div>
+
+
+                            <div class="icons">
+                                <ul class="right-area social-icons">
+                                    <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+                                    <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
+                                    <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
+                                </ul>
+                            </div>
+                            <p class="date"><em>{{ announcements.create_at }}</em></p>
+                            <h3 class="title"><a href=""><b class="light-color">{{ announcements.title }}</b></a></h3>
+                            <p class="desc">{{ announcements.detail|safe }}</p>
+                            <p class="desc">                                                                            </p>
+
+                            <div class="row ">
+                                {% for rs in images %}
+                                    <div class="col-sm-4">
+                                        <div class="image-wrapper">
+                                            <img src="{{ rs.image.url }}" alt="Blog Image"></div>
+                                    </div><!-- col-sm-6 -->
+                                {% endfor %}
+                            </div><!-- row -->
+                        </div><!-- single-post -->
+
+                        <!-- YORUM GÖRÜNTÜLE -->
+                        <div class="comments-area">
+
+                            <h4 class="title"><b class="light-color" style="color: #f0ad4e" >YORUMLAR</b></h4>
+
+                            {% for rs in comments %}
+                            <div class="comment" >
+                            <div class="author-image"><img src="{% static 'images/author-2-150x150.jpg' %}" alt="Autohr Image"></div>
+                                <div class="comment-info">
+                                    <h5><b class="light-color">{{ rs.user.first_name }}</b></h5>
+                                    <h6 class="date"><em>{{ rs.create_at }}</em></h6>
+                                   <!-- <h5><b>{{ rs.subject }}</b></h5>-->
+                                    <p><i>{{ rs.comment }}</i></p>
+                                </div>
+                            </div><!-- comment -->
+                            {%  endfor %}
+
+                        </div><!-- comments-area -->
+
+                        <!-- YORUM GÖNDER -->
+                        {% if messages %}
+                            {%  for messages in messages %}
+                                <div class="alert alert-{{ messages.tags }}" role="alert" style="margin-top: 10px;">
+                                    {{ messages }}
+                                </div>
+                            {% endfor %}
+                        {%  endif %}
+                        <div class="leave-comment-area">
+                            <h4 class="title"><b class="light-color" style="color: #f0ad4e;">YORUM YAPINIZ </b></h4>
+                            <div class="leave-comment">
+
+                                <form method="post" action="/announcement/addcomment/{{ announcements.id }}">
+                                    {% csrf_token %}
+                                    <div class="row">
+
+                                        <div class="col-sm-12">
+                                            <input class="subject-input" name="subject" type="text" placeholder="Subject">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <textarea class="message-input" name="comment" rows="6" placeholder="Message"></textarea>
+                                        </div>
+
+                                        <div class="stars" style="margin-left: 10px">
+                                            <strong style="color: #f0ad4e;">PUANIN NEDİR ?  </strong>
+                                            <input class="col-sm-2" type="radio" id="star5"  name="rate" value="5" /><label for="star5"></label>
+                                            <input class="col-sm-2" type="radio" id="star4"  name="rate" value="4" /><label for="star4"></label>
+                                            <input class="col-sm-2" type="radio" id="star3"  name="rate" value="3" /><label for="star3"></label>
+                                            <input class="col-sm-2" type="radio" id="star2"  name="rate" value="2" /><label for="star2"></label>
+                                            <input class="col-sm-2" type="radio" id="star1"  name="rate" value="1" /><label for="star1"></label>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            {% if user.id is not None %}
+                                                <button class="btn btn-2"><b>KAYDET</b></button>
+                                            {% else %}
+                                               <a href="/login">Yorum Eklemek İçin Giriş Yapınız ! </a>
+                                            {%  endif %}
+                                        </div>
+
+
+
+                                    </div><!-- row -->
+                                </form>
+
+
+                            </div><!-- leave-comment -->
+
+                        </div><!-- comments-area -->
+
+                    </div><!-- blog-posts -->
+                </div><!-- col-lg-4 -->
+
+
+                <div class="col-lg-4 col-md-12">
+                    <div class="sidebar-area">
+
+                        <div class="sidebar-section category-area">
+                            <h4 class="title"><b class="light-color">Categories</b></h4>
+                            <a class="category" href="#">
+                                <img src="{% static 'images/category-1-400x150.jpg' %}" alt="Category Image">
+                                <h6 class="name">TRAVEL</h6>
+                            </a>
+
+                            <a class="category" href="#">
+                                <img src="{% static 'images/category-2-400x150.jpg' %}" alt="Category Image">
+                                <h6 class="name">FASHION</h6>
+                            </a>
+
+                            <a class="category" href="#">
+                                <img src="{% static 'images/category-3-400x150.jpg' %}" alt="Category Image">
+                                <h6 class="name">LIFESTYLE</h6>
+                            </a>
+                            <a class="category" href="#">
+                                <img src="{% static 'images/category-4-400x150.jpg' %}" alt="Category Image">
+                                <h6 class="name">DESIGN</h6>
+                            </a>
+                        </div><!-- sidebar-section category-area -->
+                    </div>
+
+
+                </div><!-- col-lg-4 -->
+
+            </div><!-- row -->
+        </div><!-- container -->
+    </section><!-- section -->
+
+
+    <section class="footer-instagram-area">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5 class="title"><b class="light-color">Follow me &copy; instagram</b></h5>
+                </div><!-- col-lg-4 -->
+            </div><!-- row -->
+        </div><!-- container -->
+
+        <ul class="instagram">
+            <li><a href="#"><img src="images/instragram-1-300x400.jpg" alt="Instagram Image"></a></li>
+            <li><a href="#"><img src="images/instragram-2-300x400.jpg" alt="Instagram Image"></a></li>
+            <li><a href="#"><img src="images/instragram-3-300x400.jpg" alt="Instagram Image"></a></li>
+            <li><a href="#"><img src="images/instragram-4-300x400.jpg" alt="Instagram Image"></a></li>
+            <li><a href="#"><img src="images/instragram-5-300x400.jpg" alt="Instagram Image"></a></li>
+            <li><a href="#"><img src="images/instragram-6-300x400.jpg" alt="Instagram Image"></a></li>
+            <li><a href="#"><img src="images/instragram-7-300x400.jpg" alt="Instagram Image"></a></li>
+        </ul>
+    </section><!-- section -->
+{% endblock %}
+
+<script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>
+
+<script src="{% static 'common-js/tether.min.js' %}"></script>
+
+<script src="{% static 'common-js/bootstrap.js' %}"></script>
+
+<script src="{% static 'common-js/grasp_mobile_progress_circle-1.0.0.js' %}"></script>
+
+<script src="{% static 'common-js/embed.videos.min.js' %}"></script>
+
+<script src="{% static 'common-js/jquery.circliful.min.js' %}"></script>
+
+<script src="{% static 'common-js/scripts.js' %}"></script>

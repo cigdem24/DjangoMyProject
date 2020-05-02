@@ -11,9 +11,9 @@
                             <div class="image-wrapper"><img src="{{ rs.image.url }}"
                                                             alt="Blog Image"></div>
                             <p class="date"><em>{{ rs.create_at }}</em></p>
-                            <h3 class="title"><a href="#"><b class="light-color">{{ rs.title }}</b></a></h3>
+                            <h3 class="title"><a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b class="light-color">{{ rs.title }}</b></a></h3>
                             <p>{{ rs.detail|safe }}</p>
-                            <a class="btn read-more-btn" href="#"><b>READ MORE</b></a>
+                            <a class="btn read-more-btn" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
                         </div><!-- single-post -->
                     {% endfor %}
                 </div>

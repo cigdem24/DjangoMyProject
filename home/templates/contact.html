@@ -12,14 +12,24 @@
     <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
     <link href="{% static '04-Contact/css/styles.css' %}" rel="stylesheet">
     <link href="{% static '04-Contact/css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/responsive.css' %}" rel="stylesheet">
 
 {% endblock %}
 
-{% block body %}
-    <section class="blog-area">
+{% block body  %}
+    <!--background-image: url(../static/images/koy26.JPG);-->
+    <section class="blog-area" style=" padding: 269px; background-color: lemonchiffon">
+
+        <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
+                <ul class="breadcrumb">
+                    <li><a href="/home"><b>Anasayfa > </b></a></li>
+                    <li><a href="/contact"><b>İletişim </b></a></li>
+                </ul>
+        </div>
         <div class="container">
             <div class="row">
-                <div class=" col-lg-6 col-md-12">
+                <div class=" col-lg-6 col-md-12" style="margin-top: -30px;">
                     <div class="blog-posts">
                         <div class="leave-comment-area">
                             <h3 class="title"><b class="light-color">İLETİŞİM FORMU</b></h3>

@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-from announcement.models import Announcement, Category
+from announcement.models import Announcement, Category, Images, Comment
 from home.models import Setting, ContactFormu, ContactFormMessage
 
 
@@ -65,3 +65,17 @@ def category_announcements(request, id, slug):
                'category': category,
                'categorydata': categorydata}
     return render(request, 'announcements.html', context)
+
+
+def announcement_detail(request, id, slug):
+    setting = Setting.objects.get(pk=2)
+    category = Category.objects.all()
+    announcements = Announcement.objects.get(pk=id)
+    images = Images.objects.filter(announcement_id=id)
+    comments = Comment.objects.filter(announcement_id=id, status='True')
+    context = {'setting ': setting,
+               'announcements': announcements,
+               'category': category,
+               'images': images,
+               'comments': comments}
+    return render(request, 'announcement_detail.html', context)

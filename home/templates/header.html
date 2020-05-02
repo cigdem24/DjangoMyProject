@@ -1,6 +1,5 @@
 {% load static %}
 <header>
-
     <div class="top-menu">
 
         <ul class="left-area welcome-area">
@@ -38,9 +37,9 @@
         <div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
         <ul class="main-menu visible-on-click" id="main-menu">
-            <li class="drop-down"><a href="#!">ANASAYFA</a>
+            <li class="drop-down"><a href="/home">ANASAYFA</a>
             <li><a href="/about">HAKKIMIZDA</a></li>
-            <li class="drop-down"><a href="#!">DUYURULAR<i class="ion-ios-arrow-down"></i></a>
+            <li class="drop-down"><a href="/">DUYURULAR<i class="ion-ios-arrow-down"></i></a>
                 {% load mptt_tags %}
                 <ul class="drop-down-menu ">
                     {% recursetree category %}
@@ -58,6 +57,5 @@
             <li><a href="/contact">İLETİŞİM</a></li>
             <li><a href="/sponsor">SPONSORLAR</a></li>
         </ul><!-- main-menu -->
-
     </div><!-- conatiner -->
 </header>
