@@ -19,7 +19,7 @@
 
             <ul class="breadcrumb" >
                 <li><a href="/home"><b>Anasayfa >  </b></a></li>
-                <li><a href="/announcement"><b>Duyurular >  </b></a></li>
+                <li><a href=""><b>Duyurular >  </b></a></li>
                 <li><a href="/category/{{ announcements.category_id }}/{{ announcements.category.slug }}"><b>{{ announcements.category }} > </b></a></li>
                 <li><a href="/announcement/{{ announcements.category_id }}/{{ announcements.slug }}"><b>{{ announcements.title }}</b></a></li>
 
@@ -190,7 +190,6 @@
     </section><!-- section -->
 {% endblock %}
 
-<script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>
 
 <script src="{% static 'common-js/tether.min.js' %}"></script>
 

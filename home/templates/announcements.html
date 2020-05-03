@@ -25,7 +25,7 @@
         <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
             <ul class="breadcrumb">
                 <li><a href="/home"><b>Anasayfa >  </b></a></li>
-                <li><a href="/announcement"><b>Duyurular > </b></a></li>
+                <li><a href="#!"><b>Duyurular > </b></a></li>
                 <li><a href="#!"><b>{{ categorydata }} </b></a></li>
             </ul>
         </div>
@@ -35,10 +35,10 @@
             <div class="row">
 
                 {% for rs in announcements %}
-                    <div class="col-lg-6 col-md-12" >
+                    <div class="col-lg-6 col-md-12" style="background-color: #d0ffde" >
                         <div class="single-post">
 
-                                <div class="image-wrapper" style="height: 250px; width: 450px; margin-bottom: 10px; ">
+                                <div class="image-wrapper" style="height: 250px; width: 450px; margin-bottom: -42px; margin-top: 10px">
                                     <img src="{{ rs.image.url }}" alt="Blog Image">
                                 </div>
 
@@ -57,8 +57,8 @@
                                 <a  href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b class="light-color">{{ rs.title }}</b></a>
                             </h3>
 
-                            <p>{{ rs.detail|safe }}</p>
-                            <a class="btn read-more-btn" style="margin-bottom: 75px;" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
+                            <p >{{ rs.detail|safe }}</p>
+                            <a class="btn read-more-btn"  style="margin-bottom: 100px" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
 
 
                         </div><!-- single-post -->
@@ -72,7 +72,7 @@
 
 {% endblock %}
 
-<script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>
+
 
 <script src="{% static 'common-js/tether.min.js' %}"></script>
 

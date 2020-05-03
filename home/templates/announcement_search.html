@@ -32,7 +32,7 @@
 
                     {% for rs in announcements %}
                         <tr>
-                            <td>  <a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" ></a></td>
+                            <td style="width: 350px">  <a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" ></a></td>
                             <td style="margin-left: -10px">  <h5><a href="/announcement/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h5></td>
                             <td>  <h5><a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category }}</a></h5></td>
                         </tr>
@@ -44,7 +44,7 @@
     </div>    <!-- SECTION-->
 {% endblock %}
 
-<script src="{% static 'common-js/jquery-3.1.1.min.js' %}"></script>
+
 
 <script src="{% static 'common-js/tether.min.js' %}"></script>
 

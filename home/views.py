@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from home.forms import SearchForm
-
+import json
 
 from announcement.models import Announcement, Category, Images, Comment
 from home.models import Setting, ContactFormu, ContactFormMessage
@@ -84,11 +84,11 @@ def announcement_detail(request, id, slug):
 
 
 def announcement_search(request):
-    if request.method == 'POST': #post edilip edilmemesi
-        form = SearchForm(request.POST) #search formunu çağırıyor
+    if request.method == 'POST':  # post edilip edilmemesi
+        form = SearchForm(request.POST)  # search formunu çağırıyor
         if form.is_valid():
             category = Category.objects.all()
-            query = form.cleaned_data['query'] #formdan gelen veriyi query nesnesine ekledi
+            query = form.cleaned_data['query']  # formdan gelen veriyi query nesnesine ekledi
             announcements = Announcement.objects.filter(title__icontains=query)
             context = {'announcements': announcements,
                        'query': query,
@@ -96,3 +96,18 @@ def announcement_search(request):
             return render(request, 'announcement_search.html', context)
     return HttpResponseRedirect('/')
 
+
+def announcement_search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        announcement = Announcement.objects.filter(title__icontains=q)
+        results = []
+        for rs in announcement:
+            announcement_json = {}
+            announcement_json = rs.title
+            results.append(announcement_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
