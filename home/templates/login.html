@@ -1,0 +1,84 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %}          LOGIN SAYFASI              {% endblock %}
+
+{% block head %}
+
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="{% static 'common-css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static '04-Contact/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '04-Contact/css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/responsive.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body  %}
+    <!--background-image: url(../static/images/koy26.JPG);-->
+    <section class="blog-area" style=" padding: 269px; ">
+
+        <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
+                <ul class="breadcrumb">
+                    <li><a href="/home"><b>Anasayfa > </b></a></li>
+                    <li><a href="/login"><b>Login </b></a></li>
+                </ul>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-6" style="margin-top: 10px;background-color: silver">
+                    <div class="blog-posts" >
+                        <div class="leave-comment-area" >
+                            <h3 class="title"  style="height: 50px; margin-top: -30px;"><b class="light-color">LOGİN</b></h3>
+                            <div class="leave-comment">
+
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+
+
+                                <form action="" method="post" id="contactForm" name="contactForm" class="contactForm">
+                                    {% csrf_token %}
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <input class="name-input" type="text" placeholder="User Name" name="username">
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <input class="subject-input" type="password" placeholder="Password"
+                                                   name="password">
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-2" style="background-color: white"><b>GİRİŞ YAP</b></button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div><!-- comments-area -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+<script src="{% static 'common-js/tether.min.js' %}"></script>
+
+<script src="{% static 'common-js/bootstrap.js' %}"></script>
+
+<script src="{% static 'common-js/scripts.js' %}"></script>

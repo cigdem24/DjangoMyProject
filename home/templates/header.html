@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <script>
 
   $(function() {
@@ -25,8 +26,19 @@
     <div class="top-menu">
 
         <ul class="left-area welcome-area">
-            <li class="hello-blog">Hello nice people, welcome to my blog</li>
-            <li><a href="mailto:contact@juliblog.com">contact@juliblog.com</a></li>
+            <li class="hello-blog"><b>Merhaba , Köyümüze Hoşgeldiniz</b></li>
+            {% if user.id is not None %}
+            <li><button><b style="color: #f0ad4e">{{ user.first_name }}</b></button></li>
+            <li><a href="/logout/"><b style="color: #f0ad4e">LOG OUT</b></a></li>
+
+
+            {% else %}
+            <li><a href="/login/"><b style="color: #f0ad4e">LOGIN</b></a></li>
+            <li><a href="/signup/"><b style="color: #f0ad4e">SIGN UP</b></a></li>
+
+            {% endif %}
+
+
         </ul><!-- left-area -->
 
 
@@ -52,8 +64,11 @@
 
     </div><!-- top-menu -->
 
-    <div class="middle-menu center-text"><a href="#" class="logo"><img src="{% static 'images/baslık.png' %}"
-                                                                       alt="Logo Image"></a></div>
+    <div class="middle-menu center-text">
+        <a href="#" class="logo"><img src="{% static 'images/baslık.png' %}" alt="Logo Image"></a>
+
+
+    </div>
 
     <div class="bottom-area">
 

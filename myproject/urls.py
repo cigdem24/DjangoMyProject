@@ -33,6 +33,8 @@ urlpatterns = [
     path('announcement/<int:id>/<slug:slug>/', views.announcement_detail, name='announcement_detail'),
     path('search/', views.announcement_search, name='announcement_search'),
     path('search_auto/', views.announcement_search_auto, name='announcement_search_auto'),
+    path('logout/', views.logout_view, name='logout_view'),
+    path('login/', views.login_view, name='login_view'),
 ]
 
 if settings.DEBUG:
