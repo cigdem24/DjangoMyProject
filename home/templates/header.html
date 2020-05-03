@@ -1,5 +1,5 @@
 {% load static %}
-<header>
+<header >
     <div class="top-menu">
 
         <ul class="left-area welcome-area">
@@ -11,9 +11,9 @@
         <div class="right-area">
 
             <div class="src-area">
-                <form action="/search/" method="post">
+                <form action="/search/" method="post"> <!-- butona tıklanıldığında search a gitmesi gerek.-->
                     {% csrf_token %}
-                    <input class="src-input" type="text" placeholder="Arama Yapınız"/>
+                    <input  name="query" class="src-input" type="text" placeholder="Arama Yapınız"/>
                     <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
                 </form>
             </div><!-- src-area -->

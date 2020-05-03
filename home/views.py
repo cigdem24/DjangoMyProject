@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from home.forms import SearchForm
+
 
 from announcement.models import Announcement, Category, Images, Comment
 from home.models import Setting, ContactFormu, ContactFormMessage
@@ -82,15 +84,15 @@ def announcement_detail(request, id, slug):
 
 
 def announcement_search(request):
-    if request.method == 'POST':
-        form = SearchForm(request.POST)
+    if request.method == 'POST': #post edilip edilmemesi
+        form = SearchForm(request.POST) #search formunu çağırıyor
         if form.is_valid():
             category = Category.objects.all()
-            query = form.cleaned_data['query']
-            announcements = Announcement.objects.filter(title_icontains=query)
+            query = form.cleaned_data['query'] #formdan gelen veriyi query nesnesine ekledi
+            announcements = Announcement.objects.filter(title__icontains=query)
             context = {'announcements': announcements,
-                       'category': category}
+                       'query': query,
+                       'category': category, }
             return render(request, 'announcement_search.html', context)
-
     return HttpResponseRedirect('/')
 
