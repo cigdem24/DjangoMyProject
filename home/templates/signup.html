@@ -1,6 +1,6 @@
 {% extends "homebase.html" %}
 {% load static %}
-{% block title %}          LOGIN SAYFASI              {% endblock %}
+{% block title %}          SIGN UP SAYFASI              {% endblock %}
 
 {% block head %}
 
@@ -16,23 +16,24 @@
 
 {% endblock %}
 
-{% block body  %}
+{% block body %}
 
     <section class="blog-area" style=" padding: 269px; ">
 
         <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
-                <ul class="breadcrumb">
-                    <li><a href="/home"><b>Anasayfa > </b></a></li>
-                    <li><a href="/login"><b>Login </b></a></li>
-                </ul>
+            <ul class="breadcrumb">
+                <li><a href="/home"><b>Anasayfa > </b></a></li>
+                <li><a href="/signup"><b>Sign Up </b></a></li>
+            </ul>
         </div>
 
         <div class="container" style="margin-right: -250px">
             <div class="row">
-                <div class=" col-md-6" style="margin-top: 10px;background-color: silver; ">
-                    <div class="blog-posts" >
-                        <div class="leave-comment-area" >
-                            <h3 class="title"  style="height: 50px; margin-top: -30px;"><b class="light-color">LOGİN</b></h3>
+                <div class=" col-md-6" style="margin-top: 10px; background-color: whitesmoke ">
+                    <div class="blog-posts">
+                        <div class="leave-comment-area">
+                            <h3 class="title" style="height: 50px; margin-top: -30px;"><b class="light-color">SIGN
+                                UP</b></h3>
                             <div class="leave-comment">
 
                                 {% if messages %}
@@ -43,27 +44,23 @@
                                     {% endfor %}
                                 {% endif %}
 
-
-
-                                <form action="" method="post" id="contactForm" name="contactForm" class="contactForm">
+                            <!-- SIGN UP FORMU -->
+                                <form method="post">
                                     {% csrf_token %}
+                                    {% for field in form %}
+                                        <p>
+                                            {{ field.label_tag }}
+                                            {{ field }}
+                                            {% for error in field.errors %}
+                                                <p style="color: red">{{ error }}</p>
+                                            {% endfor %}
+                                        </p>
+                                      {% endfor %}
+                                      <button class="btn btn-2" type="submit"><b>SIGN UP</b></button>
 
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <input class="name-input" type="text" placeholder="User Name" name="username">
-                                        </div>
-
-                                        <div class="col-sm-12">
-                                            <input class="subject-input" type="password" placeholder="Password"
-                                                   name="password">
-                                        </div>
-
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-2" style="background-color: white"><b>GİRİŞ YAP</b></button>
-                                        </div>
-
-                                    </div>
                                 </form>
+
+
                             </div><!-- comments-area -->
                         </div>
                     </div>
