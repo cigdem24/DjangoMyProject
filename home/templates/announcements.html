@@ -35,7 +35,7 @@
             <div class="row">
 
                 {% for rs in announcements %}
-                    <div class="col-lg-6 col-md-12" style="background-color: #d0ffde" >
+                    <div class="col-lg-6 col-md-12" style="border-style: solid;border-width: 1px;border-color:silver; padding: 10px" >
                         <div class="single-post">
 
                                 <div class="image-wrapper" style="height: 250px; width: 450px; margin-bottom: -42px; margin-top: 10px">
@@ -58,7 +58,7 @@
                             </h3>
 
                             <p >{{ rs.detail|safe }}</p>
-                            <a class="btn read-more-btn"  style="margin-bottom: 100px" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
+                            <a class="btn read-more-btn"  style="margin-bottom: 30px" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
 
 
                         </div><!-- single-post -->

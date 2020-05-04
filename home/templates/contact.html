@@ -19,7 +19,7 @@
 
 {% block body  %}
     <!--background-image: url(../static/images/koy26.JPG);-->
-    <section class="blog-area" style=" padding: 269px; background-color: lemonchiffon">
+    <section class="blog-area" style=" padding: 269px;">
 
         <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
                 <ul class="breadcrumb">
@@ -29,10 +29,10 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class=" col-lg-6 col-md-12" style="margin-top: -30px;">
+                <div class=" col-lg-6 col-md-12" style="margin-top: 0px; border-style: solid;border-width: 1px;border-color:silver;">
                     <div class="blog-posts">
                         <div class="leave-comment-area">
-                            <h3 class="title"><b class="light-color">İLETİŞİM FORMU</b></h3>
+                            <h3 class="title"><b class="light-color">CONTACT FORM</b></h3>
                             <div class="leave-comment">
 
                                 {% if messages %}
@@ -64,7 +64,7 @@
                                                       name="message"></textarea>
                                         </div>
                                         <div class="col-sm-12">
-                                            <button class="btn btn-2"><b>GÖNDER</b></button>
+                                            <button class="btn btn-2"><b>Send</b></button>
                                         </div>
 
                                     </div>
@@ -74,10 +74,10 @@
                     </div>
                 </div>
                 <div class="col-lg-1"></div>
-                <div class="col-lg-5 col-md-12">
+                <div class="col-lg-5 col-md-12" style=" border-style: solid;border-width: 1px;border-color:silver">
 
                     <div class="single-post">
-                        <h3 class="title"><b class="light-color">DERNEK İLETİŞİM BİLGİLERİMİZ</b></h3>
+                        <h3 class="title" style="text-align: center"><b class="light-color">DERNEK İLETİŞİM BİLGİLERİMİZ</b></h3>
                         <p class="desc">
                             {{ setting.contact|safe }}
                         </p>

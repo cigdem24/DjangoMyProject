@@ -26,11 +26,11 @@
             </ul>
         </div>
 
-        <div class="container">
+        <div class="container" >
             <div class="row">
 
                 <div class="col-lg-8 col-md-12">
-                    <div class="blog-posts">
+                    <div class="blog-posts" style="padding: 20px">
 
                         <div class="single-post">
 
@@ -47,11 +47,14 @@
                                 </ul>
                             </div>
                             <p class="date"><em>{{ announcements.create_at }}</em></p>
-                            <h3 class="title"><a href=""><b class="light-color">{{ announcements.title }}</b></a></h3>
-                            <p class="desc">{{ announcements.detail|safe }}</p>
-                            <p class="desc">                                                                            </p>
 
-                            <div class="row ">
+                            <h3 class="title"><a href=""><b class="light-color">{{ announcements.title }}</b></a></h3>
+                            <p style="padding: -70px">{{ announcements.detail|safe }}</p>
+
+
+
+
+                            <div class="row " style="padding: 30px">
                                 {% for rs in images %}
                                     <div class="col-sm-4">
                                         <div class="image-wrapper">

@@ -6,6 +6,7 @@ from django.contrib.auth import logout, login, authenticate
 from announcement.models import Announcement, Category, Images, Comment
 from home.models import Setting, ContactFormu, ContactFormMessage
 from .forms import SearchForm, SignUpForm
+from django.contrib.auth.forms import UserCreationForm
 
 
 def index(request):
