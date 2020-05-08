@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('address', models.CharField(blank=True, max_length=50)),
                 ('city', models.CharField(blank=True, max_length=50)),
                 ('country', models.CharField(blank=True, max_length=255)),
-                ('image', models.ImageField(blank=True, upload_to='images/users/')),
+                ('image', models.ImageField(blank=True, upload_to='default/users/')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

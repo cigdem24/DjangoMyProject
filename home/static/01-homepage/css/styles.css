@@ -214,7 +214,7 @@ header .main-menu li.drop-down > ul.drop-down-menu{ display: none; position: abs
 
 header .main-menu li.drop-down > ul.drop-down-menu li{ display: block; border-top: 1px solid #ddd; }
 
-header .main-menu li.drop-down > ul.drop-down-menu li > a{ display: block; padding: 12.5px 20px; }
+header .main-menu li.drop-down > ul.drop-down-menu li > a{ display: block; padding: 10px 20px; }
 
 header .main-menu li.drop-down > ul.drop-down-inner li:first-child{ border-top: 0; }
 
@@ -223,7 +223,7 @@ header .main-menu li i{margin-left: 10px; }
 
 /* DROPDOWN SUBMENU */
 
-header .main-menu li.drop-down > ul.drop-down-inner{ top: 0; left: auto; left: 100%; }
+header .main-menu li.drop-down > ul.drop-down-inner{ top: -10px; left: auto; left: 100%; }
 
 
 

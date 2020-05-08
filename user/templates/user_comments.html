@@ -1,0 +1,93 @@
+{% extends "homebase.html" %}
+{% load static %}
+{% block title %}          KULLANICI YORUM SAYFASI             {% endblock %}
+
+{% block head %}
+
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="{% static 'common-css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static '04-Contact/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '04-Contact/css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '01-homepage/css/responsive.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body  %}
+    <!--background-image: url(../static/images/koy26.JPG);-->
+    <section class="blog-area" style=" padding: 269px;">
+
+        <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
+            <ul class="breadcrumb">
+                <li><a href="/home"><b>Home > </b></a></li>
+                <li><a href="/user/comments"><b>User Comment Page </b></a></li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class=" col-lg-2 col-md-12">
+                    <div class="blog-posts">
+                        <div class="leave-comment-area">
+                            <h4 class="title" style="text-align: left; margin-top: -30px;"><b class="light-color">User Panel</b></h4>
+                            <hr>
+                            <div>
+                                {% include "user_panel.html" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-10 col-md-12" style=" border-style: double;border-width: 2px;border-color:silver; border-radius: 10px; ">
+
+                    <div class="single-post">
+                        <h3 class="title" style="text-align: center;"><b class="light-color">User Comment</b></h3>
+                        <hr>
+                        <style>
+                            th, td {
+                                padding: 25px;
+                            }
+                        </style>
+                        <table style="width:100%; margin-bottom: 30px">
+                            <tr>
+                                <th style="background-color: whitesmoke">Announcement</th>
+                                <th style="background-color: whitesmoke">Subject</th>
+                                <th style="background-color: whitesmoke">Comment</th>
+                                <th style="background-color: whitesmoke">Rate</th>
+                                <th style="background-color: whitesmoke">Status</th>
+                                <th style="background-color: whitesmoke">Date</th>
+
+
+                            </tr>
+
+                            {% for rs in comment %}
+                                <tr>
+                                    <th><a href="/announcement/{{ rs.announcement_id }}/{{ rs.announcement.slug }}">{{ rs.announcement.title }}</a></th>
+                                    <th>{{ rs.subject }}</th>
+                                    <th>{{ rs.comment }}</th>
+                                    <th>{{ rs.rate }}</th>
+                                    <th>{{ rs.status }}</th>
+                                    <th>{{ rs.create_at }}</th>
+                                    <th><a class="btn btn-2" href="/user/deletecomment/{{ rs.id }}" onclick="return confirm('Will be delete ! Are you sure ?')">Delete</a> </th>
+
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+<script src="{% static 'common-js/tether.min.js' %}"></script>
+
+<script src="{% static 'common-js/bootstrap.js' %}"></script>
+
+<script src="{% static 'common-js/scripts.js' %}"></script>

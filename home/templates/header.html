@@ -3,38 +3,64 @@
 
 <script>
 
-  $(function() {
-    $("#query").autocomplete({
-      source: "/search_auto/",
-      select: function (event, ui) { //item selected
-        AutoCompleteSelectHandler({event: event, ui: ui})
-      },
-      minLength: 2,
+    $(function() {
+        $("#query").autocomplete({
+            source: "/search_auto/",
+            select: function (event, ui) { //item selected
+                AutoCompleteSelectHandler({event: event, ui: ui})
+            },
+            minLength: 2,
+        });
     });
-  });
 
-  function AutoCompleteSelectHandler({event, ui})
-  {
-    var selectedObj = ui.item;
-  }
+    function AutoCompleteSelectHandler({event, ui})
+    {
+        var selectedObj = ui.item;
+    }
 
 </script>
-
+ <style>
+    .mainmenubtn {
+      background-color: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding:20px;
+      margin-top:20px;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-child {
+      display: none;
+      background-color: black;
+      min-width: 200px;
+    }
+    .dropdown-child a {
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown:hover .dropdown-child {
+      display: block;
+    }
+  </style>
 
 
 <header >
     <div class="top-menu">
 
         <ul class="left-area welcome-area">
-            <li class="hello-blog"><b>Merhaba , Köyümüze Hoşgeldiniz</b></li>
             {% if user.id is not None %}
-            <li><button><b style="color: #f0ad4e">{{ user.first_name }}</b></button></li>
-            <li><a href="/logout/"><b style="color: #f0ad4e">LOG OUT</b></a></li>
+                <li><a href="/user/"><b style="color: #f0ad4e">{{ user.first_name }}</b></a></li>
+                <li><a href="/logout/"><b style="color: #f0ad4e">LOG OUT</b></a></li>
 
 
             {% else %}
-            <li><a href="/login/"><b style="color: #f0ad4e">LOGIN</b></a></li>
-            <li><a href="/signup/"><b style="color: #f0ad4e">SIGN UP</b></a></li>
+                <li><a href="/login/"><b style="color: #f0ad4e">LOGIN</b></a></li>
+                <li><a href="/signup/"><b style="color: #f0ad4e">SIGN UP</b></a></li>
 
             {% endif %}
 

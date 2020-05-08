@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block body %}
-    <section class="blog-area" style="padding: 269px">
+    <section class="blog-area" style="padding: 269px; ">
         <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
 
             <ul class="breadcrumb" >
@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="col-lg-8 col-md-12">
-                    <div class="blog-posts" style="padding: 20px">
+                    <div class="blog-posts" style="padding: 20px; border-style: double;border-width: 2px;border-color:whitesmoke;">
 
                         <div class="single-post">
 
@@ -67,11 +67,11 @@
                         <!-- YORUM GÖRÜNTÜLE -->
                         <div class="comments-area">
 
-                            <h4 class="title"><b class="light-color" style="color: #f0ad4e" >YORUMLAR</b></h4>
+                            <h4 class="title"><b class="light-color" style="color: #f0ad4e" >Comments</b></h4>
 
                             {% for rs in comments %}
                             <div class="comment" >
-                            <div class="author-image"><img src="{% static 'images/author-2-150x150.jpg' %}" alt="Autohr Image"></div>
+                            <div class="author-image"><img src="{{ rs.userprofil.image.url }}" alt="Profile Image"></div>
                                 <div class="comment-info">
                                     <h5><b class="light-color">{{ rs.user.first_name }}</b></h5>
                                     <h6 class="date"><em>{{ rs.create_at }}</em></h6>
@@ -92,7 +92,7 @@
                             {% endfor %}
                         {%  endif %}
                         <div class="leave-comment-area">
-                            <h4 class="title"><b class="light-color" style="color: #f0ad4e;">YORUM YAPINIZ </b></h4>
+                            <h4 class="title"><b class="light-color" style="color: #f0ad4e;">Your Comment</b></h4>
                             <div class="leave-comment">
 
                                 <form method="post" action="/announcement/addcomment/{{ announcements.id }}">
@@ -107,7 +107,7 @@
                                         </div>
 
                                         <div class="stars" style="margin-left: 10px">
-                                            <strong style="color: #f0ad4e;">PUANIN NEDİR ?  </strong>
+                                            <strong style="color: #f0ad4e;">YOUR RATİNG :  </strong>
                                             <input class="col-sm-2" type="radio" id="star5"  name="rate" value="5" /><label for="star5"></label>
                                             <input class="col-sm-2" type="radio" id="star4"  name="rate" value="4" /><label for="star4"></label>
                                             <input class="col-sm-2" type="radio" id="star3"  name="rate" value="3" /><label for="star3"></label>
@@ -117,7 +117,7 @@
 
                                         <div class="col-sm-12">
                                             {% if user.id is not None %}
-                                                <button class="btn btn-2"><b>KAYDET</b></button>
+                                                <button class="btn btn-2"><b>Save</b></button>
                                             {% else %}
                                                <a href="/login">Yorum Eklemek İçin Giriş Yapınız ! </a>
                                             {%  endif %}

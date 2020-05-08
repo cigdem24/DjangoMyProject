@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=30)),
                 ('keywords', models.CharField(max_length=255)),
                 ('description', models.CharField(max_length=255)),
-                ('image', models.ImageField(blank=True, upload_to='images/')),
+                ('image', models.ImageField(blank=True, upload_to='default/')),
                 ('status', models.CharField(choices=[('True', 'Evet'), ('False', 'Hayır')], max_length=10)),
                 ('detail', models.TextField()),
                 ('create_at', models.DateTimeField(auto_now_add=True)),

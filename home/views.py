@@ -4,7 +4,7 @@ from django.shortcuts import render
 import json
 from django.contrib.auth import logout, login, authenticate
 from announcement.models import Announcement, Category, Images, Comment
-from home.models import Setting, ContactFormu, ContactFormMessage
+from home.models import *
 from .forms import SearchForm, SignUpForm
 from django.contrib.auth.forms import UserCreationForm
 
@@ -24,13 +24,14 @@ def index(request):
 
 
 def about(request):
+    category = Category.objects.all()
     setting = Setting.objects.get(pk=2)
-    from unicodedata import category
     context = {'setting': setting, 'category': category}
     return render(request, 'about.html', context)
 
 
 def contact(request):
+    category = Category.objects.all()
     if request.method == 'POST':  # form post edildiyse
         form = ContactFormu(request.POST)
         if form.is_valid():
@@ -45,7 +46,6 @@ def contact(request):
 
     setting = Setting.objects.get(pk=2)
     form = ContactFormu()
-    from unicodedata import category
     context = {'setting': setting, 'form': form, 'category': category}
     return render(request, 'contact.html', context)
 
@@ -54,8 +54,8 @@ def contact(request):
 
 
 def sponsor(request):
+    category = Category.objects.all()
     setting = Setting.objects.get(pk=2)
-    from unicodedata import category
     context = {'setting': setting, 'category': category}
     return render(request, 'sponsor.html', context)
 
@@ -79,8 +79,9 @@ def announcement_detail(request, id, slug):
     context = {'setting ': setting,
                'announcements': announcements,
                'category': category,
-               'images': images,
-               'comments': comments}
+               'default': images,
+               'comments': comments,
+               }
     return render(request, 'announcement_detail.html', context)
 
 
@@ -146,6 +147,10 @@ def signup_view(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
+            user_profile = UserProfile()
+            user_profile.user = user
+            user_profile.image = "default/account-512.png"
+            user_profile.save()
             login(request, user)
             return HttpResponseRedirect('/')
 
@@ -155,4 +160,3 @@ def signup_view(request):
                'form': form, }
 
     return render(request, 'signup.html', context)
-

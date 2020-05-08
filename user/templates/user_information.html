@@ -1,0 +1,43 @@
+<style>
+    th ,tr {
+  border: 3px double whitesmoke;
+  border-collapse: collapse;
+}
+    th, td {
+        padding: 25px;
+    }
+</style>
+<table style="width:100%; margin-bottom: 30px">
+    <tr>
+        <th>
+             <a href="/user/update" class="btn btn-2"><b>Update Profile</b></a>
+             <a href="/user/password" class="btn btn-2"><b>Change Password</b></a>
+        </th>
+        <td><img style="max-width: 120px;height: auto; border-radius: 10px"
+            src="{{ profile.image.url }}"></td>
+    </tr>
+    <tr>
+        <th>Name Surname</th>
+        <td>{{ profile.user.first_name }} {{ profile.user.last_name }}</td>
+    </tr>
+    <tr>
+        <th>E-Mail</th>
+        <td>{{ profile.user.email }}</td>
+    </tr>
+    <tr>
+        <th>Phone</th>
+        <td>{{ profile.phone }}</td>
+    </tr>
+    <tr>
+        <th>Address</th>
+        <td>{{ profile.address }}</td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td>{{ profile.city }}</td>
+    </tr>
+    <tr>
+        <th>Country</th>
+        <td>{{ profile.country }}</td>
+    </tr>
+</table>
