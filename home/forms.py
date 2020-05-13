@@ -5,20 +5,18 @@ from django.contrib.auth.models import User
 
 class SearchForm(forms.Form):
     query = forms.CharField(label='Search', max_length=100)
-    #catid = forms.IntegerField()
+    # catid = forms.IntegerField()
 
 
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(max_length=30,  label='User Name :')
-    email = forms.EmailField(max_length=200,   label='Email :')
+    username = forms.CharField(max_length=30, label='User Name :')
+    email = forms.EmailField(max_length=200, label='Email :')
     firs_name = forms.CharField(max_length=50, label='First Name :')
     last_name = forms.CharField(max_length=50, label='Last Name :')
-    #password1 = forms.CharField(max_length=32, widget=forms.PasswordInput)
-    #password2 = forms.CharField(max_length=32, widget=forms.PasswordInput)
+
+    # password1 = forms.CharField(max_length=32, widget=forms.PasswordInput)
+    # password2 = forms.CharField(max_length=32, widget=forms.PasswordInput)
 
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
-
-
-

@@ -1,17 +1,40 @@
 {% load static %}
+
 <section class="section blog-area">
     <div class="container">
-        <div class="row">
 
+        <div class="row" >
+            <div class="row" style="margin-top: -10px; margin-bottom: 50px;">
+
+                <div class="col-md-2">
+                    <a href="" ><img src="{% static 'images/announcement.png' %}"><b style="font-size: larger; font-family: 'Arial Black'; text-align: center">DUYURULAR</b></a>
+                </div><div class="col-md-1"></div>
+
+                <div class="col-md-2">
+                    <a href="/contact" ><img src="{% static 'images/location-map.png' %}"><b style="font-size: larger; font-family: 'Arial Black';text-align: center">İLETİŞİM VE ADRES</b></a>
+                </div><div class="col-md-1"></div>
+
+                <div class="col-md-2">
+                    <a href="/signup" ><img src="{% static 'images/member-add.png' %}"><b style="font-size: larger; font-family: 'Arial Black';text-align: center">ÜYE KAYIT</b></a>
+                </div><div class="col-md-1"></div>
+
+
+                <div class="col-md-2">
+                    <a href="/signup" ><img src="{% static 'images/image-share.png' %}"><b style="font-size: larger; font-family: 'Arial Black';text-align: center">FOTO PAYLAŞ</b></a>
+                </div> <div class="col-md-1"></div>
+
+            </div>
             <div class="col-lg-7 col-md-12">
                 <div class="blog-posts">
+                <h2 style=" font-family: Algerian; color: #eb9316; margin-bottom: 30px">HABERLER VE DUYURULAR</h2>
                     {% for rs in homepageAnnouncement %}
                         <div class="single-post">
 
                             <div class="image-wrapper"><img src="{{ rs.image.url }}"
                                                             alt="Blog Image"></div>
                             <p class="date"><em>{{ rs.create_at }}</em></p>
-                            <h3 class="title"><a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b class="light-color">{{ rs.title }}</b></a></h3>
+                            <h3 class="title"><a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b
+                                    class="light-color">{{ rs.title }}</b></a></h3>
                             <p>{{ rs.detail|safe }}</p>
                             <a class="btn read-more-btn" href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b>READ MORE</b></a>
                         </div><!-- single-post -->
@@ -21,6 +44,35 @@
             <div class="col-lg-1 col-md-12"></div>
             <div class="col-lg-4 col-md-12">
                 <div class="sidebar-area">
+
+                    <script>
+
+                        $(function () {
+                            $("#query").autocomplete({
+                                source: "/search_auto/",
+                                select: function (event, ui) { //item selected
+                                    AutoCompleteSelectHandler(event, ui)
+                                },
+                                minLength: 2,
+                            });
+                        });
+
+                        function AutoCompleteSelectHandler(event, ui) {
+                            var selectedObj = ui.item;
+                        }
+
+                    </script>
+
+                    <div class="sidebar-section src-area">
+
+                        <form action="/search/" method="post">
+                            {% csrf_token %}
+                            <input id="query" name="query" class="src-input" type="text" placeholder="Search">
+                            <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+                        </form>
+
+                    </div>
+                    <!-- sidebar-section src-area -->
 
                     <div class="sidebar-section about-author center-text">
                         <div class="author-image"><img src="{% static 'images/author-1-200x200.jpg' %}"
@@ -44,14 +96,7 @@
 
                     </div><!-- sidebar-section about-author -->
 
-                    <div class="sidebar-section src-area">
 
-                        <form action="post">
-                            <input class="src-input" type="text" placeholder="Search">
-                            <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-                        </form>
-
-                    </div><!-- sidebar-section src-area -->
 
                     <div class="sidebar-section newsletter-area">
                         <h5 class="title"><b>Subscribe to our newsletter</b></h5>

@@ -1,89 +1,39 @@
 {% load static %}
 
-
-<script>
-
-    $(function() {
-        $("#query").autocomplete({
-            source: "/search_auto/",
-            select: function (event, ui) { //item selected
-                AutoCompleteSelectHandler({event: event, ui: ui})
-            },
-            minLength: 2,
-        });
-    });
-
-    function AutoCompleteSelectHandler({event, ui})
-    {
-        var selectedObj = ui.item;
-    }
-
-</script>
- <style>
-    .mainmenubtn {
-      background-color: red;
-      color: white;
-      border: none;
-      cursor: pointer;
-      padding:20px;
-      margin-top:20px;
-    }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropdown-child {
-      display: none;
-      background-color: black;
-      min-width: 200px;
-    }
-    .dropdown-child a {
-      color: white;
-      padding: 20px;
-      text-decoration: none;
-      display: block;
-    }
-    .dropdown:hover .dropdown-child {
-      display: block;
-    }
-  </style>
-
-
-<header >
+<header>
+    <!-- SOSYAL MEDYA İCONLARI-->
     <div class="top-menu">
 
-        <ul class="left-area welcome-area">
-            {% if user.id is not None %}
-                <li><a href="/user/"><b style="color: #f0ad4e">{{ user.first_name }}</b></a></li>
-                <li><a href="/logout/"><b style="color: #f0ad4e">LOG OUT</b></a></li>
-
-
-            {% else %}
-                <li><a href="/login/"><b style="color: #f0ad4e">LOGIN</b></a></li>
-                <li><a href="/signup/"><b style="color: #f0ad4e">SIGN UP</b></a></li>
-
-            {% endif %}
-
-
-        </ul><!-- left-area -->
-
+        <ul class="social-icons left-area">
+            <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
+            <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
+            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+            <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
+            <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+        </ul><!-- right-area -->
 
         <div class="right-area">
 
-            <div class="src-area" >
+            <div class="src-area">
                 <form action="/search/" method="post"> <!-- butona tıklanıldığında search a gitmesi gerek.-->
                     {% csrf_token %}
-                    <input  id="query" name="query" class="src-input" type="text" placeholder="Arama Yapınız"/>
+                    <input class="src-input" type="text" placeholder="Arama Yapınız"/>
                     <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
                 </form>
             </div><!-- src-area -->
 
             <ul class="social-icons">
-                <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-                <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
-                <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-                <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
-                <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+                {% if user.id is not None %}
+                    <li><a href="/user/"><h5 style="color: #f0ad4e"><i class="ion-ios-person-outline"></i>
+                        {{ user.first_name }}{{ user.last_name }}</h5></a></li>
+                    <li><a href="/logout/"><b style="color: #f0ad4e">LOG OUT</b></a></li>
+
+
+                {% else %}
+                    <li><a href="/login/"><b style="color: #f0ad4e">LOGIN</b></a></li>
+                    <li><a href="/signup/"><b style="color: #f0ad4e">SIGN UP</b></a></li>
+
+                {% endif %}
             </ul><!-- right-area -->
 
         </div><!-- right-area -->
@@ -91,9 +41,14 @@
     </div><!-- top-menu -->
 
     <div class="middle-menu center-text">
-        <a href="#" class="logo"><img src="{% static 'images/baslık.png' %}" alt="Logo Image"></a>
-
-
+        <a href="#" class="logo"><img  style="width: 210px;height: auto; margin-top: -20px" src="{% static 'images/logo1.PNG' %}" alt="Logo Image"></a>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert" style="width: 300px; margin-left: 610px">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
     <div class="bottom-area">
@@ -101,25 +56,64 @@
         <div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
 
         <ul class="main-menu visible-on-click" id="main-menu">
+
             <li class="drop-down"><a href="/home">ANASAYFA</a>
-            <li><a href="/about">HAKKIMIZDA</a></li>
+
+                <!-- MENU-->
+                {% if  menu %}
+                    {% load mptt_tags %}
+                    {% recursetree menu %}
+
+                        {% if  node.is_leaf_node %}
+                            <li><a href="/menu/{{ node.id }}">{{ node.title }}</a></li>
+                        {% endif %}
+
+                        {% if not  node.is_leaf_node %}
+                            <li class="drop-down">
+                                <a href="/menu/{{ node.id }}">{{ node.title }}<i class="ion-ios-arrow-down"></i></a>
+                                <ul class="drop-down-menu">
+                                    {{ children }}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    {% endrecursetree %}
+                {% endif %}
+
+            <!-- DUYURULAR-->
             <li class="drop-down"><a href="/">DUYURULAR<i class="ion-ios-arrow-down"></i></a>
                 {% load mptt_tags %}
                 <ul class="drop-down-menu ">
                     {% recursetree category %}
-                        <li class="drop-down"><a href="/category/{{ node.id }}/{{ node.slug }}"> {{ node.title }}<i class="ion-ios-arrow-right"></i></a>
-                            {% if not node.is_leaf_node %}
-                                <ul class="drop-down-menu drop-down-inner children">
-                                    <li><a href="/category/{{ node.id }}/{{ node.slug }}">{{ children }}</a></li>
+                        {% if  node.is_leaf_node %}
+                            <li>
+                                <a href="/category/{{ node.id }}/{{ node.slug }}"> {{ node.title }}</a>
+                            </li>
+                        {% endif %}
+                        {% if not  node.is_leaf_node %}
+                            <li class="drop-down">
+                                <a href="/category/{{ node.id }}/{{ node.slug }}"> {{ node.title }}<i
+                                        class="ion-ios-arrow-right"></i></a>
+                                <ul class="drop-down-menu drop-down-inner">
+                                    {{ children }}
                                 </ul>
-                            {% endif %}
-                        </li>
+                            </li>
+                        {% endif %}
                     {% endrecursetree %}
                 </ul>
             </li>
 
+
             <li><a href="/contact">İLETİŞİM</a></li>
             <li><a href="/sponsor">SPONSORLAR</a></li>
+            <li class="drop-down"><a href="/"><i class="ion-ios-arrow-right"></i></a>
+                <ul class="drop-down-menu drop-down-inner">
+                    <li><a href="#">FEATURED</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">CATEGORIES</a></li>
+                </ul>
+            </li>
+
         </ul><!-- main-menu -->
     </div><!-- conatiner -->
 </header>
+

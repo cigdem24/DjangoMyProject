@@ -19,7 +19,6 @@ from django.contrib import admin
 from django.urls import path, include
 from home import views
 
-
 urlpatterns = [
 
     path('admin/', admin.site.urls),
@@ -27,10 +26,10 @@ urlpatterns = [
     path('', include('home.urls')),
     path('home/', include('home.urls')),
     path('user/', include('user.urls')),
+    path('content/', include('content.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
 
-    path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('sponsor/', views.sponsor, name='sponsor'),
     path('category/<int:id>/<slug:slug>/', views.category_announcements, name='category_announcements'),
@@ -40,8 +39,10 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout_view'),
     path('login/', views.login_view, name='login_view'),
     path('signup/', views.signup_view, name='signup_view'),
+    path('menu/<int:id>', views.menu, name='menu'),
+    path('content/<int:id>/<slug:slug>', views.content_detail, name='content_detail'),
 
 ]
 
 if settings.DEBUG:
-    urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

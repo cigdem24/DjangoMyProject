@@ -216,7 +216,8 @@ header .main-menu li.drop-down > ul.drop-down-menu li{ display: block; border-to
 
 header .main-menu li.drop-down > ul.drop-down-menu li > a{ display: block; padding: 10px 20px; }
 
-header .main-menu li.drop-down > ul.drop-down-inner li:first-child{ border-top: 0; }
+header .main-menu li.drop-down > ul.drop-down-inner li:first-child{ }
+header .main-menu li.drop-down > ul.drop-down-menu li:first-child{}
 
 header .main-menu li i{margin-left: 10px; }
 

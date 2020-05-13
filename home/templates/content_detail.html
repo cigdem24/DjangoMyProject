@@ -1,0 +1,54 @@
+{% extends "homebase.html" %}
+{% load static %}
+
+{% block title %}        {{ content.title }}          {% endblock %}
+{% block head %}
+
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link href="{% static 'common-css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'common-css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static '03-About-me/css/styles.css' %}" rel="stylesheet">
+    <link href="{% static '03-About-me/css/responsive.css' %}" rel="stylesheet">
+
+
+{% endblock %}
+{% block body %}
+    <section class="section blog-area" style="padding: 269px;" >
+        <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
+            <ul class="breadcrumb">
+                <li><a href="/home"><b>Anasayfa > </b></a></li>
+                <li><a href="/content"><b>{{ content.title }} </b></a></li>
+            </ul>
+        </div>
+
+        <div class="container"  >
+            <div class="row">
+                <div class="col-lg-2 col-md-12"></div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="blog-posts">
+
+
+                        <p class="desc">{{ content.detail|safe }}</p>
+
+                    </div><!-- single-post -->
+                </div><!-- blog-posts -->
+            </div><!-- col-lg-4 -->
+        </div><!-- row -->
+        </div><!-- container -->
+    </section><!-- section -->
+{% endblock %}
+
+
+<script src="{% static 'common-js/tether.min.js' %}"></script>
+
+<script src="{% static 'common-js/bootstrap.js' %}"></script>
+
+<script src="{% static 'common-js/grasp_mobile_progress_circle-1.0.0.js' %}"></script>
+
+<script src="{% static 'common-js/embed.videos.min.js' %}"></script>
+
+<script src="{% static 'common-js/jquery.circliful.min.js' %}"></script>
+
+<script src="{% static 'common-js/scripts.js' %}"></script>

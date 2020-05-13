@@ -100,6 +100,7 @@ class Comment(models.Model):
         ('False', 'False'),
 
     )
+    #duyuru ile ilişkisel
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     userprofil = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

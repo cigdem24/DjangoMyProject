@@ -14,7 +14,7 @@ def index(request):
 
 @login_required(login_url='/login')
 def addcomment(request, id):
-    current_user_profil = UserProfile.objects.get(pk=request.user.id)
+    current_user_profil = UserProfile.objects.get(user_id=request.user.id)
     url = request.META.get('HTTP_REFERER')
     if request.method == 'POST':  # form post edildiyse
         form = CommentForm(request.POST)
