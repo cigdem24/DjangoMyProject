@@ -1,16 +1,16 @@
 from django.contrib.auth.decorators import login_required
-from form import form
+
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from content.models import Content, Menu, ContentForm
+from menu.models import Menu
 
 # Create your views here.
 
 
-from announcement.models import Category, Comment
+from announcement.models import Category, Comment, AnnouncementForm, Announcement
 from home.models import UserProfile
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
@@ -93,82 +93,80 @@ def deletecomment(request, id):
 
 
 @login_required(login_url='/login')
-def addcontent(request):
-    content = Content.objects.all()
+def add_announcement(request):
     if request.method == 'POST':
-        form = ContentForm(request.POST, request.FILES)
+        form = AnnouncementForm(request.POST, request.FILES)
         if form.is_valid():
             current_user = request.user
-            data = Content()
+            data = Announcement()
             data.user_id = current_user.id
             data.title = form.cleaned_data['title']
             data.keywords = form.cleaned_data['keywords']
             data.description = form.cleaned_data['description']
             data.image = form.cleaned_data['image']
-            data.type = form.cleaned_data['type']
+            data.category = form.cleaned_data['category']
             data.slug = form.cleaned_data['slug']
             data.detail = form.cleaned_data['detail']
-            data.status = 'True'
+            data.status = 'False'
             data.save()
             messages.success(request, 'Your Content Recorded Successfully ')
-            return HttpResponseRedirect('/user/contents')
+            return HttpResponseRedirect('/user/announcements')
         else:
-            messages.error(request, 'Content Form Error :' + str(form.errors))
-            return HttpResponseRedirect('/user/addcontent')
+            messages.error(request, 'Announcement Form Error :' + str(form.errors))
+            return HttpResponseRedirect('/user/addannouncement')
     else:
         category = Category.objects.all()
-        form = ContentForm()
+        form = AnnouncementForm()
         menu = Menu.objects.all()
         context = {
-
             'category': category,
             'form': form,
             'menu': menu,
         }
-        return render(request, 'user_addcontent.html', context)
+        return render(request, 'user_addannouncement.html', context)
 
 
 @login_required(login_url='/login')
-def contentedit(request, id):
-    content = Content.objects.get(id=id)
+def announcementedit(request, id):
+    announcement = Announcement.objects.get(id=id)
     if request.method == 'POST':
-        form = ContentForm(request.POST, request.FILES, instance=content)
+        form = AnnouncementForm(request.POST, request.FILES, instance=announcement)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Your Content Updated Successfully ')
-            return HttpResponseRedirect('/user/contents')
+            messages.success(request, 'Your Announcement Updated Successfully ')
+            return HttpResponseRedirect('/user/announcements')
         else:
-            messages.error(request, 'Content Form Error :' + str(form.errors))
-            return HttpResponseRedirect('/user/contentedit' + str(id))
+            messages.error(request, 'Announcement Form Error :' + str(form.errors))
+            return HttpResponseRedirect('/user/announcementedit' + str(id))
     else:
         category = Category.objects.all()
         menu = Menu.objects.all()
-        form = ContentForm(instance=content)
+        form = AnnouncementForm(instance=announcement)
         context = {
             'category': category,
             'form': form,
             'menu': menu,
         }
-        return render(request, 'user_addcontent.html', context)
+        return render(request, 'user_addannouncement.html', context)
 
 
 @login_required(login_url='/login')
-def contents(request):
+def announcement_show(request):
     category = Category.objects.all()
     menu = Menu.objects.all()
     current_user = request.user
-    content = Content.objects.filter(user_id=current_user.id)
+    announcement = Announcement.objects.filter(user_id=current_user.id, status='True')
     context = {
         'category': category,
         'menu': menu,
-        'content': content,
+        'announcement': announcement,
     }
-    return render(request, 'user_contents.html', context)
+    return render(request, 'user_announcements.html', context)
 
 
 @login_required(login_url='/login')
-def contentdelete(request, id):
+def announcementdelete(request, id):
     current_user = request.user
-    Content.objects.filter(id=id, user_id=current_user.id).delete()
+    Announcement.objects.filter(id=id, user_id=current_user.id).delete()
     messages.success(request, 'Content deleted..')
-    return HttpResponseRedirect('/user/contents')
+    return HttpResponseRedirect('/user/announcements')

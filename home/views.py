@@ -5,7 +5,7 @@ import json
 from django.contrib.auth import logout, login, authenticate
 from announcement.models import Announcement, Category, Images, Comment
 from home.models import *
-from content.models import Content, Menu
+from menu.models import Content, Menu
 from .forms import SearchForm, SignUpForm
 from django.contrib.auth.forms import UserCreationForm
 
@@ -185,7 +185,7 @@ def signup_view(request):
 def menu(request, id):
     try:
         content = Content.objects.get(menu_id=id)
-        link = '/content' + "/" + str(content.id) + "/" + str(content.slug)
+        link = '/menu' + "/" + str(content.id) + "/" + str(content.slug)
         return HttpResponseRedirect(link)
 
     except:

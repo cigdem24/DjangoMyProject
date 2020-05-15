@@ -1,8 +1,9 @@
+from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-from django.forms import ModelForm
+from django.forms import ModelForm, Select, TextInput, FileInput
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -55,6 +56,7 @@ class Announcement(models.Model):
         ('False', 'Hayır'),
     )
     # RELATİON WİTH CATEGORY TABLE
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     keywords = models.CharField(max_length=255)
@@ -78,6 +80,21 @@ class Announcement(models.Model):
         return reverse('announcement_detail', kwargs={'slug': self.slug})
 
 
+class AnnouncementForm(ModelForm):
+    class Meta:
+        model = Announcement
+        fields = ['category', 'title', 'slug', 'image', 'keywords', 'description', 'detail']
+        widgets = {
+            'category': Select(attrs={'class': 'input', 'placeholder': 'type'}, choices=Category.objects.all()),
+            'title': TextInput(attrs={'class': 'input', 'placeholder': 'title'}),
+            'slug': TextInput(attrs={'class': 'input', 'placeholder': 'slug '}),
+            'image': FileInput(attrs={'class': 'input', 'placeholder': 'image'}),
+            'keywords': TextInput(attrs={'class': 'input', 'placeholder': 'keywords'}),
+            'description': TextInput(attrs={'class': 'input', 'placeholder': 'description'}),
+            'detail': CKEditorWidget(),
+        }
+
+
 class Images(models.Model):
     # framework kullanırken yazılan sorgular veritabanı işlemlerinden bağımsız.
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
@@ -93,6 +110,12 @@ class Images(models.Model):
     image_tag.short_description = 'Image'
 
 
+class ImagesForm(ModelForm):
+    class Meta:
+        model = Images
+        fields = ['title', 'image']
+
+
 class Comment(models.Model):
     STATUS = (
         ('New', 'New'),
@@ -100,7 +123,7 @@ class Comment(models.Model):
         ('False', 'False'),
 
     )
-    #duyuru ile ilişkisel
+    # duyuru ile ilişkisel
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     userprofil = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

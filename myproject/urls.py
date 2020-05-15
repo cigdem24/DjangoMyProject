@@ -26,11 +26,10 @@ urlpatterns = [
     path('', include('home.urls')),
     path('home/', include('home.urls')),
     path('user/', include('user.urls')),
-    path('content/', include('content.urls')),
+    path('menu/', include('menu.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
 
-    path('contact/', views.contact, name='contact'),
     path('sponsor/', views.sponsor, name='sponsor'),
     path('category/<int:id>/<slug:slug>/', views.category_announcements, name='category_announcements'),
     path('announcement/<int:id>/<slug:slug>/', views.announcement_detail, name='announcement_detail'),
@@ -40,7 +39,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login_view'),
     path('signup/', views.signup_view, name='signup_view'),
     path('menu/<int:id>', views.menu, name='menu'),
-    path('content/<int:id>/<slug:slug>', views.content_detail, name='content_detail'),
+    path('menu/<int:id>/<slug:slug>', views.content_detail, name='content_detail'),
 
 ]
 

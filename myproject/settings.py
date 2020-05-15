@@ -34,7 +34,7 @@ INSTALLED_APPS = (
     'announcement.apps.AnnouncementConfig',
     'home.apps.HomeConfig',
     'user.apps.UserConfig',
-    'content.apps.ContentConfig',
+    'menu.apps.MenuConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

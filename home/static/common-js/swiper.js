@@ -4512,7 +4512,7 @@
             lteIE9: (function() {
                 // create temporary DIV
                 var div = document.createElement('div');
-                // add content to tmp DIV which is wrapped into the IE HTML conditional statement
+                // add menu to tmp DIV which is wrapped into the IE HTML conditional statement
                 div.innerHTML = '<!--[if lte IE 9]><i></i><![endif]-->';
                 // return true / false value based on what will browser render
                 return div.getElementsByTagName('i').length === 1;
