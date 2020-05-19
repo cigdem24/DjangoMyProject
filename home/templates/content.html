@@ -7,31 +7,31 @@
             <div class="row" style="margin-top: -10px; margin-bottom: 50px;">
 
                 <div class="col-md-2">
-                    <a href="" ><img src="{% static 'images/announcement.png' %}"><b style="font-size: larger; font-family: 'Arial Black'; text-align: center">DUYURULAR</b></a>
+                    <a href="/user/addannouncement/{{ rs.id }}" ><img src="{% static 'images/announcement.png' %}"><b style="font-size: larger; font-family: 'Arial Black'; text-align: center">Duyuru Paylaş </b></a>
                 </div><div class="col-md-1"></div>
 
                 <div class="col-md-2">
-                    <a href="/contact" ><img src="{% static 'images/location-map.png' %}"><b style="font-size: larger; font-family: 'Arial Black';text-align: center">İLETİŞİM VE ADRES</b></a>
+                    <a href="/contact" ><img src="{% static 'images/location-map.png' %}"><b style="font-size: larger; font-family: 'Arial Black';text-align: center">İletişim & Adres</b></a>
                 </div><div class="col-md-1"></div>
 
                 <div class="col-md-2">
-                    <a href="/signup" ><img src="{% static 'images/member-add.png' %}"><b style="font-size: larger; font-family: 'Arial Black';text-align: center">ÜYE KAYIT</b></a>
+                    <a href="/signup" ><img src="{% static 'images/member-add.png' %}"><b style="font-size: larger; font-family: 'Arial Black'">Üye Kayıt</b></a>
                 </div><div class="col-md-1"></div>
 
 
                 <div class="col-md-2">
-                    <a href="/signup" ><img src="{% static 'images/image-share.png' %}"><b style="font-size: larger; font-family: 'Arial Black';text-align: center">FOTO PAYLAŞ</b></a>
+                    <a href="" ><img src="{% static 'images/image-share.png' %}"><b style="font-size: larger; font-family: 'Arial Black'">Galeri</b></a>
                 </div> <div class="col-md-1"></div>
 
             </div>
             <div class="col-lg-7 col-md-12">
                 <div class="blog-posts">
-                <h2 style=" font-family: Algerian; color: #eb9316; margin-bottom: 30px">HABERLER VE DUYURULAR</h2>
+                    <h2 style="  font-family: 'Times New Roman' ;color:red;margin-bottom: 30px">HABERLER VE DUYURULAR</h2>
                     {% for rs in homepageAnnouncement %}
                         <div class="single-post">
 
-                            <div class="image-wrapper"><img src="{{ rs.image.url }}"
-                                                            alt="Blog Image"></div>
+                            <div class="image-wrapper"><a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}"
+                                                                                                              alt="Blog Image"></a></div>
                             <p class="date"><em>{{ rs.create_at }}</em></p>
                             <h3 class="title"><a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><b
                                     class="light-color">{{ rs.title }}</b></a></h3>
@@ -72,60 +72,31 @@
                         </form>
 
                     </div>
-                    <!-- sidebar-section src-area -->
-
-                    <div class="sidebar-section about-author center-text">
-                        <div class="author-image"><img src="{% static 'images/author-1-200x200.jpg' %}"
-                                                       alt="Autohr Image"></div>
-
-                        <ul class="social-icons">
-                            <li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
-                        </ul><!-- right-area -->
-
-                        <h4 class="author-name"><b class="light-color">Cristine Smith</b></h4>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            dolore magnam aliquam quaerat voluptatem.</p>
-
-                        <div class="signature-image"><img src="{% static 'images/signature-image.png' %}"
-                                                          alt="Signature Image"></div>
-                        <a class="read-more-link" href="#"><b>READ MORE</b></a>
-
-                    </div><!-- sidebar-section about-author -->
-
-
-
-                    <div class="sidebar-section newsletter-area">
-                        <h5 class="title"><b>Subscribe to our newsletter</b></h5>
-                        <form action="post">
-                            <input class="email-input" type="text" placeholder="Your email here">
-                            <button class="btn btn-2" type="submit">SUBSCRIBE</button>
-                        </form>
-                    </div><!-- sidebar-section newsletter-area -->
-
                     <div class="sidebar-section category-area">
-                        <h4 class="title"><b class="light-color">Categories</b></h4>
-                        <a class="category" href="#">
-                            <img src="{% static 'images/category-1-400x150.jpg' %}" alt="Category Image">
-                            <h6 class="name">TRAVEL</h6>
-                        </a>
-
-                        <a class="category" href="#">
-                            <img src="{% static 'images/category-2-400x150.jpg' %}" alt="Category Image">
-                            <h6 class="name">FASHION</h6>
-                        </a>
-
-                        <a class="category" href="#">
-                            <img src="{% static 'images/category-3-400x150.jpg' %}" alt="Category Image">
-                            <h6 class="name">LIFESTYLE</h6>
-                        </a>
-                        <a class="category" href="#">
-                            <img src="{% static 'images/category-4-400x150.jpg' %}" alt="Category Image">
-                            <h6 class="name">DESIGN</h6>
-                        </a>
+                        <h3 class="title" style="color: #0000cc; font-family: 'Times New Roman'">DUYURULAR</h3>
+                        {% load mptt_tags %}
+                        <ul style="color: red">{% recursetree category %}
+                                {% if  node.is_leaf_node %}
+                                    <li>
+                                        <a class="category" href="/category/{{ node.id }}/{{ node.slug }}">
+                                            <img src="{{ node.image.url }}" alt="Category Image">
+                                            <h6 class="name">{{ node.title }}</h6>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                {% if not  node.is_leaf_node %}
+                                    <li >
+                                        <a class="category" href="/category/{{ node.id }}/{{ node.slug }}">
+                                            <img src="{{ node.image.url }}" alt="Category Image">
+                                            <h6 class="name">{{ node.title }}</h6>
+                                        </a>
+                                        <ul >
+                                            {{ children }}
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                            {% endrecursetree %}
+                        </ul>
                     </div><!-- sidebar-section category-area -->
 
                     <div class="sidebar-section latest-post-area">

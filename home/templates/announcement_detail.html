@@ -1,8 +1,9 @@
 {% extends "homebase.html" %}
 {% load static %}
 
-{% block title %}           {% endblock %}
+{% block title %}   {{ announcements.title }}      {% endblock %}
 {% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{ setting.icon.url }}'/>
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <!-- Stylesheets -->
@@ -33,11 +34,12 @@
                     <div class="blog-posts" style="padding: 20px; border-style: double;border-width: 2px;border-color:whitesmoke;">
 
                         <div class="single-post">
-
-                            <div class="image-wrapper">
+                            <div class="fotorama" data-nav="thumbs" data-width="600">
                                 <img src="{{ announcements.image.url }}" alt="Blog Image">
+                                {% for  rs in images %}
+                                    <img src="{{ rs.image.url }}">
+                                {% endfor %}
                             </div>
-
 
                             <div class="icons">
                                 <ul class="right-area social-icons">
@@ -50,18 +52,8 @@
 
                             <h3 class="title"><a href=""><b class="light-color">{{ announcements.title }}</b></a></h3>
                             <p style="padding: -70px">{{ announcements.detail|safe }}</p>
+                            <p >{{ profile.phone }}</p>
 
-
-
-
-                            <div class="row " style="padding: 30px">
-                                {% for rs in images %}
-                                    <div class="col-sm-4">
-                                        <div class="image-wrapper">
-                                            <img src="{{ rs.image.url }}" alt="Blog Image"></div>
-                                    </div><!-- col-sm-6 -->
-                                {% endfor %}
-                            </div><!-- row -->
                         </div><!-- single-post -->
 
                         <!-- YORUM GÖRÜNTÜLE -->
@@ -70,15 +62,16 @@
                             <h4 class="title"><b class="light-color" style="color: #f0ad4e" >Comments</b></h4>
 
                             {% for rs in comments %}
-                            <div class="comment" >
-                            <div class="author-image"><img src="{{ rs.userprofil.image.url }}" alt="Profile Image"></div>
-                                <div class="comment-info">
-                                    <h5><b class="light-color">{{ rs.user.first_name }}</b></h5>
-                                    <h6 class="date"><em>{{ rs.create_at }}</em></h6>
-                                   <!-- <h5><b>{{ rs.subject }}</b></h5>-->
-                                    <p><i>{{ rs.comment }}</i></p>
-                                </div>
-                            </div><!-- comment -->
+                                <div class="comment" >
+                                    <div class="author-image" style="max-width: 150px; margin: 0px auto 20px; transform: translateY(-30px);
+	border-radius: 3px; overflow: hidden; box-shadow: 0px 0px 30px rgba(0,0,0,.1);"><img src="{{ rs.userprofil.image.url }}" alt="Profile Image"></div>
+                                    <div class="comment-info">
+                                        <h5><b class="light-color">{{ rs.user.first_name }}</b></h5>
+                                        <h6 class="date"><em>{{ rs.create_at }}</em></h6>
+                                        <!-- <h5><b>{{ rs.subject }}</b></h5>-->
+                                        <p><i>{{ rs.comment }}</i></p>
+                                    </div>
+                                </div><!-- comment -->
                             {%  endfor %}
 
                         </div><!-- comments-area -->
@@ -112,7 +105,7 @@
                                             {% if user.id is not None %}
                                                 <button class="btn btn-2"><b>Save</b></button>
                                             {% else %}
-                                               <a style="margin-left:150px;border-radius: 5px; background-color: darkorange" href="/login">Yorum Eklemek İçin Giriş Yapınız    ! </a>
+                                                <a style="margin-left:150px;border-radius: 5px; background-color: darkorange" href="/login">Yorum Eklemek İçin Giriş Yapınız    ! </a>
                                             {%  endif %}
                                         </div>
 
@@ -132,6 +125,15 @@
 
                 <div class="col-lg-4 col-md-12">
                     <div class="sidebar-area">
+                        <div class="sidebar-section src-area">
+
+                            <form action="/search/" method="post">
+                                {% csrf_token %}
+                                <input id="query" name="query" class="src-input" type="text" placeholder="Search">
+                                <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+                            </form>
+
+                        </div>
 
                         <div class="sidebar-section category-area">
                             <h4 class="title"><b class="light-color">Categories</b></h4>

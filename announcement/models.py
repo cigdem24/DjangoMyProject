@@ -39,7 +39,7 @@ class Category(MPTTModel):
         while k is not None:
             full_path.append(k.title)
             k = k.parent
-        return ' > '.join(full_path[::-1])
+        return ' __ '.join(full_path[::-1])
 
     def image_tag(self):
         return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
@@ -56,6 +56,7 @@ class Announcement(models.Model):
         ('False', 'Hayır'),
     )
     # RELATİON WİTH CATEGORY TABLE
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)

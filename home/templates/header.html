@@ -11,44 +11,54 @@
             <li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
             <li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
         </ul><!-- right-area -->
-
+        <!--
         <div class="right-area">
+           <script>
 
-            <div class="src-area">
-                <form action="/search/" method="post"> <!-- butona tıklanıldığında search a gitmesi gerek.-->
+                $(function () {
+                    $("#query").autocomplete({
+                        source: "/search_auto/",
+                        select: function (event, ui) { //item selected
+                            AutoCompleteSelectHandler(event, ui)
+                        },
+                        minLength: 2,
+                    });
+                });
+
+                function AutoCompleteSelectHandler(event, ui) {
+                    var selectedObj = ui.item;
+                }
+
+            </script>
+            <div class=" src-area">
+
+                <form action="/search/" method="post">
                     {% csrf_token %}
-                    <input class="src-input" type="text" placeholder="Arama Yapınız"/>
+                    <input id="query" name="query" class="src-input" type="text" placeholder="Search">
                     <button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
                 </form>
-            </div><!-- src-area -->
 
-            <ul class="social-icons">
-                {% if user.id is not None %}
-                    <li><a href="/user/"><h5 style="color: #f0ad4e"><i class="ion-ios-person-outline"></i>
-                        {{ user.first_name }}{{ user.last_name }}</h5></a></li>
-                    <li><a href="/logout/"><b style="color: #f0ad4e">LOG OUT</b></a></li>
+            </div>
 
 
-                {% else %}
-                    <li><a href="/login/"><b style="color: #f0ad4e">LOGIN</b></a></li>
-                    <li><a href="/signup/"><b style="color: #f0ad4e">SIGN UP</b></a></li>
+        </div>  -->
 
-                {% endif %}
-            </ul><!-- right-area -->
-
-        </div><!-- right-area -->
 
     </div><!-- top-menu -->
 
     <div class="middle-menu center-text">
-        <a href="#" class="logo"><img  style="width: 210px;height: auto; margin-top: -20px" src="{% static 'images/logo1.PNG' %}" alt="Logo Image"></a>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}" role="alert" style="width: 300px; margin-left: 610px">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+        <div class="col-lg-12"> <a href="#" class="logo"><img  style="width: 210px;height: auto; margin-top: -20px" src="{% static 'images/logo1.PNG' %}" alt="Logo Image"></a></div>
+        <div class="col-lg-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert" style="width: 300px; margin-left: 610px;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+
     </div>
 
     <div class="bottom-area">
@@ -71,7 +81,7 @@
                         {% if not  node.is_leaf_node %}
                             <li class="drop-down">
                                 <a href="/menu/{{ node.id }}">{{ node.title }}<i class="ion-ios-arrow-down"></i></a>
-                                <ul class="drop-down-menu">
+                                <ul class="drop-down-menu" style="color:white; background-color: mediumaquamarine">
                                     {{ children }}
                                 </ul>
                             </li>
@@ -82,7 +92,7 @@
             <!-- DUYURULAR-->
             <li class="drop-down"><a href="/">DUYURULAR<i class="ion-ios-arrow-down"></i></a>
                 {% load mptt_tags %}
-                <ul class="drop-down-menu ">
+                <ul class="drop-down-menu " style="color:white; background-color: #66d1ff">
                     {% recursetree category %}
                         {% if  node.is_leaf_node %}
                             <li>
@@ -93,7 +103,7 @@
                             <li class="drop-down">
                                 <a href="/category/{{ node.id }}/{{ node.slug }}"> {{ node.title }}<i
                                         class="ion-ios-arrow-right"></i></a>
-                                <ul class="drop-down-menu drop-down-inner">
+                                <ul class="drop-down-menu drop-down-inner" style="color:white; background-color: #66d1ff">
                                     {{ children }}
                                 </ul>
                             </li>
@@ -103,9 +113,33 @@
             </li>
 
 
+
             <li><a href="/contact">İLETİŞİM</a></li>
             <li><a href="/sponsor">SPONSORLAR</a></li>
-           
+
+
+            <!-- KULLANICI SAYFASI-->
+            {% if user.id is not None %}
+                <li class="drop-down" style=" background-color: yellowgreen; border-radius:9px">
+                    <a href="/user/">
+                        <!--<img style="width: 30px; height: auto; border-radius: 5px" src="{{ profile.image.url }}" alt="Profile Image">-->
+                        <b style="color:white"> {{ user.first_name }}  {{ user.last_name }}</b>
+                    </a>
+
+                    <ul class="drop-down-menu " style="color:white; background-color: mediumpurple">
+                        <li><a href="/user"><b>Profilim</b></a></li>
+                        <li><a href="/user/announcements"><b>Duyurularım</b></a></li>
+                        <li><a href="/user/addannouncement/{{ announcement.id }}"><b>Duyuru Ekle</b></a></li>
+                        <li><a href="/user/comments"><b>Yorumlarım</b></a></li>
+                        <li><a href="/logout"><b>Log Out</b></a></li>
+                    </ul>
+                </li>
+
+            {% else %}
+                <li style="color: white;font-family: 'Comic Sans MS';background-color: yellowgreen; border-radius: 10px"><a href="/login/">LOGIN</a></li>
+                <li style="color: white;font-family: 'Comic Sans MS';background-color: yellowgreen; border-radius: 10px"><a href="/signup/">SIGN UP</a></li>
+
+            {% endif %}
 
         </ul><!-- main-menu -->
     </div><!-- conatiner -->

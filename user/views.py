@@ -11,18 +11,20 @@ from menu.models import Menu
 
 
 from announcement.models import Category, Comment, AnnouncementForm, Announcement
-from home.models import UserProfile
+from home.models import UserProfile, Setting
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
 def index(request):
+    setting = Setting.objects.get(pk=2)
     current_user = request.user
     profile = UserProfile.objects.get(user_id=current_user.id)
     category = Category.objects.all()
     menu = Menu.objects.all()
     context = {'category': category,
                'profile': profile,
-               'menu': menu
+               'menu': menu,
+               'setting': setting
                }
     return render(request, 'user_profile.html', context)
 
@@ -39,6 +41,7 @@ def user_update(request):
             return redirect('/user')
 
     else:
+        setting = Setting.objects.get(pk=2)
         category = Category.objects.all()
         menu = Menu.objects.all()
         current_user = request.user
@@ -47,7 +50,8 @@ def user_update(request):
         context = {'category': category,
                    'user_form': user_form,
                    'profile_form': profile_form,
-                   'menu': menu
+                   'menu': menu,
+                   'setting': setting
                    }
         return render(request, 'user_update.html', context)
 
@@ -64,21 +68,24 @@ def change_password(request):
             messages.error(request, 'Please correct the error below.')
 
     else:
+        setting = Setting.objects.get(pk=2)
         category = Category.objects.all()
         form = PasswordChangeForm(request.user)
         menu = Menu.objects.all()
-        return render(request, 'change_password.html', {'form': form, 'category': category, 'menu': menu})
+        return render(request, 'change_password.html', {'form': form, 'category': category, 'menu': menu,'setting': setting})
 
 
 @login_required(login_url='/login')
 def comments(request):
+    setting = Setting.objects.get(pk=2)
     menu = Menu.objects.all()
     category = Category.objects.all()
     current_user = request.user
     comment = Comment.objects.filter(user_id=current_user.id)
     context = {'category': category,
                'comment': comment,
-               'menu': menu}
+               'menu': menu,
+               'setting': setting}
     return render(request, 'user_comments.html', context)
 
 
@@ -100,6 +107,7 @@ def add_announcement(request):
             current_user = request.user
             data = Announcement()
             data.user_id = current_user.id
+            data.announcements_id = id
             data.title = form.cleaned_data['title']
             data.keywords = form.cleaned_data['keywords']
             data.description = form.cleaned_data['description']
@@ -115,6 +123,7 @@ def add_announcement(request):
             messages.error(request, 'Announcement Form Error :' + str(form.errors))
             return HttpResponseRedirect('/user/addannouncement')
     else:
+        setting = Setting.objects.get(pk=2)
         category = Category.objects.all()
         form = AnnouncementForm()
         menu = Menu.objects.all()
@@ -122,6 +131,7 @@ def add_announcement(request):
             'category': category,
             'form': form,
             'menu': menu,
+            'setting': setting
         }
         return render(request, 'user_addannouncement.html', context)
 
@@ -139,6 +149,7 @@ def announcementedit(request, id):
             messages.error(request, 'Announcement Form Error :' + str(form.errors))
             return HttpResponseRedirect('/user/announcementedit' + str(id))
     else:
+        setting = Setting.objects.get(pk=2)
         category = Category.objects.all()
         menu = Menu.objects.all()
         form = AnnouncementForm(instance=announcement)
@@ -146,12 +157,14 @@ def announcementedit(request, id):
             'category': category,
             'form': form,
             'menu': menu,
+            'setting': setting
         }
         return render(request, 'user_addannouncement.html', context)
 
 
 @login_required(login_url='/login')
 def announcement_show(request):
+    setting = Setting.objects.get(pk=2)
     category = Category.objects.all()
     menu = Menu.objects.all()
     current_user = request.user
@@ -160,6 +173,7 @@ def announcement_show(request):
         'category': category,
         'menu': menu,
         'announcement': announcement,
+        'setting': setting
     }
     return render(request, 'user_announcements.html', context)
 

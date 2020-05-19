@@ -46,7 +46,6 @@
                     <div class="single-post">
                         <h3 class="title" style="text-align: center;">
                             <b class="light-color">User Announcements List</b>
-                            <a class="btn" href="/user/addannouncement/{{ rs.id }}" >Add Announcement</a>
                         </h3>
 
                         <hr>
@@ -56,15 +55,15 @@
                             }
                         </style>
                         <table style="width:100%; margin-bottom: 30px">
-                            <tr>
-                                <th style="background-color: whitesmoke">Galery</th>
-                                <th style="background-color: whitesmoke">Image</th>
-                                <th style="background-color: whitesmoke">Title</th>
-
-                                <th style="background-color: whitesmoke">Category</th>
-                                <th style="background-color: whitesmoke">Status</th>
-                                <th style="background-color: whitesmoke">Date</th>
-                                <th style="background-color: whitesmoke">Detail</th>
+                            <tr style="background-color: deepskyblue;">
+                                <th >Galery</th>
+                                <th >Image</th>
+                                <th >Title</th>
+                                <th >Category</th>
+                                <th >Status</th>
+                                <th >Date</th>
+                                <th >Edit</th>
+                                <th >Delete</th>
 
 
                             </tr>
@@ -74,8 +73,8 @@
                                         <a href="javascript:window.open('/announcement/gallery/{{ rs.id }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
                                             <img src="{{ rs.image.url }}" height="40" title="Image Gallery"></a>
                                     </td>
-                                    <td><img src="{{ rs.image.url }}" style="height: 30px; width: auto"> </td>
-                                    <td>{{ rs.title }}</td>
+                                    <td><a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="height: 30px; width: auto"> </a></td>
+                                    <td><a href="/announcement/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></td>
                                     <td>{{ rs.category.title }}</td>
                                     <td>{{ rs.status }}</td>
                                     <td>{{ rs.create_at }}</td>

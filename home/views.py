@@ -14,6 +14,7 @@ def index(request):
     setting = Setting.objects.get(pk=2)
     menu = Menu.objects.all()
     user = User.objects.all()
+    userprofil = UserProfile.objects.all()
     sliderdata = Announcement.objects.all()[:15]
     category = Category.objects.all()
     homepageAnnouncement = Announcement.objects.all().order_by('?')[:6]
@@ -24,6 +25,7 @@ def index(request):
                'category': category,
                'homepageAnnouncement': homepageAnnouncement,
                'menu': menu,
+               'userprofil': userprofil,
 
                }
     return render(request, 'index.html', context)
@@ -68,11 +70,13 @@ def sponsor(request):
 
 
 def category_announcements(request, id, slug):
+    setting = Setting.objects.get(pk=2)
     menu = Menu.objects.all()
     category = Category.objects.all()
     categorydata = Category.objects.get(pk=id)
     announcements = Announcement.objects.filter(category_id=id)
     context = {
+        'setting': setting,
         'announcements': announcements,
         'category': category,
         'categorydata': categorydata,
@@ -85,17 +89,22 @@ def announcement_detail(request, id, slug):
     setting = Setting.objects.get(pk=2)
     category = Category.objects.all()
     announcements = Announcement.objects.get(pk=id)
+    #profile = UserProfile.objects.get(user_id=announcements.user_id)
+    # print("Userin Adı:" + userprofile.user.first_name)
     images = Images.objects.filter(announcement_id=id)
     comments = Comment.objects.filter(announcement_id=id, status='True')
     context = {
-        'setting ': setting,
+        'setting': setting,
         'announcements': announcements,
         'category': category,
         'default': images,
         'comments': comments,
-        'menu': menu
+        'menu': menu,
+        'images': images,
+        #'profile': profile,
     }
     return render(request, 'announcement_detail.html', context)
+
 
 
 def announcement_search(request):
@@ -104,9 +113,11 @@ def announcement_search(request):
         if form.is_valid():
             menu = Menu.objects.all()
             category = Category.objects.all()
+            setting = Setting.objects.get(pk=2)
             query = form.cleaned_data['query']  # formdan gelen veriyi query nesnesine ekledi
             announcements = Announcement.objects.filter(title__icontains=query)
             context = {'announcements': announcements,
+                       'setting': setting,
                        'query': query,
                        'category': category, 'menu': menu}
             return render(request, 'announcement_search.html', context)
@@ -139,7 +150,7 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=username, password=password, )
         if user is not None:
             login(request, user)
             return HttpResponseRedirect('/')
@@ -150,7 +161,8 @@ def login_view(request):
 
     category = Category.objects.all()
     menu = Menu.objects.all()
-    context = {'category': category, 'menu': menu}
+    setting = Setting.objects.get(pk=2)
+    context = {'category': category, 'menu': menu,'setting': setting,}
 
     return render(request, 'login.html', context)
 
@@ -173,10 +185,12 @@ def signup_view(request):
     form = SignUpForm()
     menu = Menu.objects.all()
     category = Category.objects.all()
+    setting = Setting.objects.get(pk=2)
     context = {
         'category': category,
         'form': form,
-        'menu': menu
+        'menu': menu,
+        'setting': setting,
     }
 
     return render(request, 'signup.html', context)
@@ -190,7 +204,7 @@ def menu(request, id):
 
     except:
         messages.warning(request, "ERROR ! İlgili İçerik Bulunamadı")
-        link = '/'
+        link = '/home'
         return HttpResponseRedirect(link)
 
 
