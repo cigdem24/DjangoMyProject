@@ -270,7 +270,7 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .single-post .icons ul.social-icons > li > a > i{ margin-right: 10px; }
 
-.single-post .title{ margin: 3px 0 3px; }
+.single-post .title{ margin: 20px 0 15px; }
 
 .single-post .date{ color: #999; }
 
@@ -303,15 +303,15 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .comments-area{ margin: 50px 0; }
 
-/*th: 70px; border-radius: 100px; overflow: hidden; float: left; }*/
+.comments-area .author-image{ height: 70px; width: 70px; border-radius: 100px; overflow: hidden; float: left; }
 
-.comments-area .comment-info{ float: left; }
+.comments-area .comment-info{ margin-left: 90px; }
 
-.comments-area .title{ margin-bottom: 30px;  float: left;}
+.comments-area .title{ margin-bottom: 30px; }
 
-.comments-area .comment{ margin-bottom: 30px; float: left;}
+.comments-area .comment{ margin-bottom: 30px; }
 
-.comments-area .date{ margin: 5px 0 15px; color: #888; float: left;}
+.comments-area .date{ margin: 5px 0 15px; color: #888; }
 
 
 /* LEAVE COMMENT */

@@ -34,12 +34,16 @@
                     <div class="blog-posts" style="padding: 20px; border-style: double;border-width: 2px;border-color:whitesmoke;">
 
                         <div class="single-post">
+
+
                             <div class="fotorama" data-nav="thumbs" data-width="600">
                                 <img src="{{ announcements.image.url }}" alt="Blog Image">
                                 {% for  rs in images %}
                                     <img src="{{ rs.image.url }}">
                                 {% endfor %}
                             </div>
+
+
 
                             <div class="icons">
                                 <ul class="right-area social-icons">
@@ -54,6 +58,9 @@
                             <p style="padding: -70px">{{ announcements.detail|safe }}</p>
                             <p >{{ profile.phone }}</p>
 
+
+
+
                         </div><!-- single-post -->
 
                         <!-- YORUM GÖRÜNTÜLE -->
@@ -63,8 +70,7 @@
 
                             {% for rs in comments %}
                                 <div class="comment" >
-                                    <div class="author-image" style="max-width: 150px; margin: 0px auto 20px; transform: translateY(-30px);
-	border-radius: 3px; overflow: hidden; box-shadow: 0px 0px 30px rgba(0,0,0,.1);"><img src="{{ rs.userprofil.image.url }}" alt="Profile Image"></div>
+                                    <div class="author-image"><img src="{{ rs.userprofil.image.url }}" alt="Profile Image"></div>
                                     <div class="comment-info">
                                         <h5><b class="light-color">{{ rs.user.first_name }}</b></h5>
                                         <h6 class="date"><em>{{ rs.create_at }}</em></h6>
@@ -117,7 +123,7 @@
 
                             </div><!-- leave-comment -->
 
-                        </div><!-- comments-area -->
+                        </div><!-- leave-comments-area -->
 
                     </div><!-- blog-posts -->
                 </div><!-- col-lg-4 -->

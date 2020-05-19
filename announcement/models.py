@@ -56,7 +56,6 @@ class Announcement(models.Model):
         ('False', 'Hayır'),
     )
     # RELATİON WİTH CATEGORY TABLE
-    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)

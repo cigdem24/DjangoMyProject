@@ -89,8 +89,6 @@ def announcement_detail(request, id, slug):
     setting = Setting.objects.get(pk=2)
     category = Category.objects.all()
     announcements = Announcement.objects.get(pk=id)
-    #profile = UserProfile.objects.get(user_id=announcements.user_id)
-    # print("Userin Adı:" + userprofile.user.first_name)
     images = Images.objects.filter(announcement_id=id)
     comments = Comment.objects.filter(announcement_id=id, status='True')
     context = {
@@ -101,7 +99,6 @@ def announcement_detail(request, id, slug):
         'comments': comments,
         'menu': menu,
         'images': images,
-        #'profile': profile,
     }
     return render(request, 'announcement_detail.html', context)
 
