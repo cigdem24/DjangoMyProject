@@ -168,7 +168,7 @@ def announcement_show(request):
     category = Category.objects.all()
     menu = Menu.objects.all()
     current_user = request.user
-    announcement = Announcement.objects.filter(user_id=current_user.id, status='True')
+    announcement = Announcement.objects.filter(user_id=current_user.id)
     context = {
         'category': category,
         'menu': menu,

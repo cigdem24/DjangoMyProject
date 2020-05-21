@@ -55,11 +55,10 @@
                             }
                         </style>
                         <table style="width:100%; margin-bottom: 30px">
-                            <tr style="background-color: deepskyblue;">
+                            <tr style="background-color: #d7fffd;">
                                 <th >Galery</th>
                                 <th >Image</th>
                                 <th >Title</th>
-                                <th >Category</th>
                                 <th >Status</th>
                                 <th >Date</th>
                                 <th >Edit</th>
@@ -74,8 +73,8 @@
                                             <img src="{{ rs.image.url }}" height="40" title="Image Gallery"></a>
                                     </td>
                                     <td><a href="/announcement/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="height: 30px; width: auto"> </a></td>
-                                    <td><a href="/announcement/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></td>
-                                    <td>{{ rs.category.title }}</td>
+                                    <td ><a href="/announcement/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></td>
+                                    <!--<td>{{ rs.category.title }}</td>-->
                                     <td>{{ rs.status }}</td>
                                     <td>{{ rs.create_at }}</td>
                                     <td><a class="btn btn-2" href="/user/announcementedit/{{ rs.id }}" >Edit</a> </td>

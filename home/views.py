@@ -15,17 +15,21 @@ def index(request):
     menu = Menu.objects.all()
     user = User.objects.all()
     userprofil = UserProfile.objects.all()
-    sliderdata = Announcement.objects.all()[:15]
+    sliderdata = Announcement.objects.all()[:7]
+    latestdata = Announcement.objects.all().order_by('-id')[:3]
     category = Category.objects.all()
     homepageAnnouncement = Announcement.objects.all().order_by('?')[:6]
+    content = Content.objects.all()
 
     context = {'setting': setting,
                'page': 'home',
                'sliderdata': sliderdata,
+               'latestdata': latestdata,
                'category': category,
                'homepageAnnouncement': homepageAnnouncement,
                'menu': menu,
                'userprofil': userprofil,
+               'content': content,
 
                }
     return render(request, 'index.html', context)

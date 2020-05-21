@@ -52,8 +52,9 @@ class Category(MPTTModel):
 
 class Announcement(models.Model):
     STATUS = (
-        ('True', 'Evet'),
-        ('False', 'Hayır'),
+        ('Onaylandı', 'Onaylandı'),
+        ('Henüz Onaylanmadı', 'Henüz Onaylanmadı'),
+        ('Onaylanmadı', 'Onaylanmadı')
     )
     # RELATİON WİTH CATEGORY TABLE
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -62,7 +63,7 @@ class Announcement(models.Model):
     keywords = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='default/')
-    status = models.CharField(max_length=10, choices=STATUS)
+    status = models.CharField(max_length=50, choices=STATUS, default='Henüz Onaylanmadı')
     detail = RichTextUploadingField()
     slug = models.SlugField()
     create_at = models.DateTimeField(auto_now_add=True)
