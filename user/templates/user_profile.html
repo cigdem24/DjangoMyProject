@@ -43,9 +43,16 @@
 
                 <div class="col-lg-10 col-md-12">
 
-                    <div class="single-post">
-                        <h3 class="title" style="text-align: center;"><b class="light-color">User Information</b></h3>
+                    <div class="single-post" >
+                        <h3 class="title" ><b class="light-color" >User Information</b></h3>
                         <hr>
+                         {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         {% include "user_information.html" %}
                     </div>
                 </div>

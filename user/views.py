@@ -58,7 +58,7 @@ def user_update(request):
 
 def change_password(request):
     if request.method == 'POST':
-        user_form = PasswordChangeForm(request.user, request.POST)
+        form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)

@@ -22,19 +22,28 @@
     <section class="blog-area" style=" padding: 269px;">
 
         <div id="breadcrumb" style="margin-left: -265px; margin-right: -265px;">
-                <ul class="breadcrumb">
-                    <li><a href="/home"><b>Anasayfa > </b></a></li>
-                    <li><a href="/contact"><b>İletişim </b></a></li>
-                </ul>
+            <ul class="breadcrumb">
+                <li><a href="/home"><b>Anasayfa > </b></a></li>
+                <li><a href="/contact"><b>İletişim </b></a></li>
+            </ul>
         </div>
+
         <div class="container">
             <div class="row">
                 <div class=" col-lg-6 col-md-12" style="margin-top: 0px; border-style: solid;border-width: 1px;border-color:silver;">
                     <div class="blog-posts">
+
                         <div class="leave-comment-area">
                             <h3 class="title" style="margin-top: -30px"><b class="light-color">CONTACT FORM</b></h3>
-                            <div class="leave-comment">
 
+                            <div class="leave-comment">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
                                 <form action="" method="post" id="contactForm" name="contactForm" class="contactForm">
                                     {% csrf_token %}
 
@@ -56,7 +65,6 @@
                                         <div class="col-sm-12">
                                             <button class="btn btn-2"><b>Send</b></button>
                                         </div>
-
                                     </div>
                                 </form>
                             </div><!-- comments-area -->
@@ -76,7 +84,9 @@
 
             </div>
         </div>
+
     </section>
+
 
 {% endblock %}
 

@@ -40,6 +40,7 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup_view'),
     path('menu/<int:id>', views.menu, name='menu'),
     path('menu/<int:id>/<slug:slug>', views.content_detail, name='content_detail'),
+    path('faq/', views.faq, name='faq'),
 
 ]
 

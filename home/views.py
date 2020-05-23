@@ -222,3 +222,17 @@ def content_detail(request, id, slug):
         'setting': setting
     }
     return render(request, 'content_detail.html', context)
+
+
+def faq(request):
+    category = Category.objects.all()
+    menu = Menu.objects.all()
+    setting = Setting.objects.get(pk=2)
+    faq = FAQ.objects.all().order_by()
+    context = {
+        'category': category,
+        'faq': faq,
+        'menu': menu,
+        'setting': setting
+    }
+    return render(request, 'faq.html', context)
