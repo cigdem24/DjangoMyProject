@@ -26,7 +26,7 @@
             </div>
             <div class="col-lg-7 col-md-12">
                 <div class="blog-posts">
-                    <h2 style="  font-family: 'Times New Roman' ;color:red;margin-bottom: 30px">HABERLER VE DUYURULAR</h2>
+                    <h2 style="margin-bottom: 30px; font-family: Algerian;color: dimgrey">HABERLER VE DUYURULAR</h2>
                     {% for rs in homepageAnnouncement %}
                         <div class="single-post">
 
@@ -73,7 +73,7 @@
 
                     </div>
                     <div class="sidebar-section category-area">
-                        <h3 class="title" style="color: #0000cc; font-family: 'Times New Roman'">DUYURULAR</h3>
+                        <h3 class="title" >DUYURULAR</h3>
                         {% load mptt_tags %}
                         <ul style="color: red">{% recursetree category %}
                             {% if  node.is_leaf_node %}
@@ -130,20 +130,3 @@
     </div><!-- container -->
 </section><!-- section -->
 
-
-<section class="footer-instagram-area">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h5 class="title"><b class="light-color">Follow me &copy; instagram</b></h5>
-            </div><!-- col-lg-4 -->
-        </div><!-- row -->
-    </div><!-- container -->
-
-    <ul class="instagram">
-        {% for rs in sliderdata %}
-            <li><a href="#"><img src="{{ rs.image.url }}" alt="Instagram Image"></a></li>
-        {% endfor %}
-    </ul>
-</section><!-- section -->

@@ -24,14 +24,19 @@
                 <li><a href="/sponsor"><b>Sponsorlar </b></a></li>
             </ul>
         </div>
-        <div class="container " >
+        <div class="container"  >
             <div class="row">
-                <div class="col-lg-2 col-md-12 footer-instagram-area"></div>
-                <div class="col-lg-10 col-md-12 footer-instagram-area">
-                    {{ setting.references|safe }}
-                </div>
-            </div>
-        </div>
+                <div class="col-lg-2 col-md-12"></div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="blog-posts">
+
+                        <p class="desc">{{ setting.references|safe }}</p>
+
+                    </div><!-- single-post -->
+                </div><!-- blog-posts -->
+            </div><!-- col-lg-4 -->
+        </div><!-- row -->
+        </div><!-- container -->
     </section>
 {% endblock %}
 
